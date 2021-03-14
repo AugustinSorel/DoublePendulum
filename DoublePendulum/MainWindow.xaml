@@ -9,6 +9,7 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         KeyDown="Window_KeyDown"
+        Topmost="True"
         Title="MainWindow" Height="600" Width="600">
     <Canvas Name="canvas">
         

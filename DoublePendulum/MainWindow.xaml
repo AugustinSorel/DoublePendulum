@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DoublePendulum"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        KeyDown="Window_KeyDown"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Canvas Name="canvas">
         
-    </Grid>
+    </Canvas>
 </Window>

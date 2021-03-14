@@ -15,17 +15,26 @@ namespace DoublePendulum
     {
         private double r1 = 200;
         private double r2 = 200;
-        private double m1 = 40;
-        private double m2 = 40;
-        private double a1 = 0;
-        private double a2 = 0;
+        private double m1 = 30;
+        private double m2 = 10;
+        private double a1 = Math.PI / 2;
+        private double a2 = Math.PI / 2;
         private double a1_v = 0;
         private double a2_v = 0;
         private double g = 1;
 
+        private double px2 = -1;
+        private double py2 = -1;
+
+        private double cy;
+        private double cx;
+
+
         public MainWindow()
         {
             InitializeComponent();
+            cx = Width / 2;
+            cy = 50;
             CreateTimer();
         }
 
@@ -39,12 +48,11 @@ namespace DoublePendulum
             double a1_a = (num1 + num2 + num3 * num4) / den;
 
             num1 = 2 * Math.Sin(a1 - a2);
-            num2 = (a1_v * a1_v * r1 * (m1 + m2));
+            num2 = a1_v * a1_v * r1 * (m1 + m2);
             num3 = g * (m1 + m2) * Math.Cos(a1);
-            num4 = a2_v * a2_v * r2 * m2 * Math.Cos(2 * a1 - 2 * a2);
+            num4 = a2_v * a2_v * r2 * m2 * Math.Cos(a1 - a2);
             den = r2 * (2 * m1 + m2 - m2 * Math.Cos(2 * a1 - 2 * a2));
-
-            double a2_a = (num1 * num2 + num3 + num4) / den;
+            double a2_a = num1 * (num2 + num3 + num4) / den;
 
             double x1 = r1 * Math.Sin(a1);
             double y1 = r1 * Math.Cos(a1);
@@ -52,38 +60,49 @@ namespace DoublePendulum
             double x2 = x1 + r2 * Math.Sin(a2);
             double y2 = y1 + r2 * Math.Cos(a2);
 
-            mainArm.X1 = 300;
+            mainArm.X1 = cx;
             mainArm.Y1 = 50;
-            mainArm.X2 = x1 + 300;
+            mainArm.X2 = x1 + cx;
             mainArm.Y2 = y1 + 50;
 
-            center.Center = new Point(x1 + 300, y1 + 50);
+            center.Center = new Point(x1 + cx, y1 + 50);
             center.RadiusX = center.RadiusY = m1;
 
 
-            secondArm.X1 = x1 + 300;
+            secondArm.X1 = x1 + cx;
             secondArm.Y1 = y1 + 50;
-            secondArm.X2 = x2 + 300;
+            secondArm.X2 = x2 + cx;
             secondArm.Y2 = y2 + 50;
 
-            center2.Center = new Point(x2 + 300, y2 + 50);
+            center2.Center = new Point(x2 + cx, y2 + 50);
             center2.RadiusX = center2.RadiusY = m2;
 
-            a1 += a1_v;
-            a2 += a2_v;
             a1_v += a1_a;
             a2_v += a2_a;
+            a1 += a1_v;
+            a2 += a2_v;
 
-            Ellipse ellipse = new Ellipse()
+            //a1_v *= 0.99;
+            //a2_v *= 0.99;
+
+            if (px2 != -1)
             {
-                Stroke = Brushes.Black,
-                Height = 10,
-                Width = 10
-            };
+                Line ellipse = new Line()
+                {
+                    Stroke = Brushes.Black,
+                    X1 = px2 + cx,
+                    Y1 = py2 + 50,
+                    X2 = x2 + cx,
+                    Y2 = y2 + 50,
+                    Fill = Brushes.Black,
+                    StrokeThickness = 1,
+                };
 
-            Canvas.SetLeft(ellipse, x2 + 305);
-            Canvas.SetTop(ellipse, y2 + 55);
-            canvas.Children.Add(ellipse);
+                canvas.Children.Add(ellipse);
+            }
+
+            px2 = x2;
+            py2 = y2;   
         }
 
         #region Create Timer

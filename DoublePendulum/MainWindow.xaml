@@ -9,8 +9,18 @@
         ResizeMode="NoResize"
         WindowStyle="None"
         KeyDown="Window_KeyDown"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="600">
     <Canvas Name="canvas">
         
+        
+        <Line Name="mainArm" Stroke="Black" StrokeThickness="2"/>
+        
+        
+        <Path Fill="Black" Name="bob">
+            <Path.Data>
+                <EllipseGeometry x:Name="center"
+                    />
+            </Path.Data>
+        </Path>
     </Canvas>
 </Window>

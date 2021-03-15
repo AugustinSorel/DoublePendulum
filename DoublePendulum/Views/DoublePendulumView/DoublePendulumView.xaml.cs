@@ -25,13 +25,15 @@ namespace DoublePendulum
         private double px2 = -1;
         private double py2 = -1;
 
-        private double cy;
-
-        public double Cy
+        public int Cy
         {
-            get { return cy; }
-            set { cy = value; }
+            get { return (int)GetValue(CyProperty); }
+            set { SetValue(CyProperty, value); }
         }
+
+        // Using a DependencyProperty as the backing store for Cy.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CyProperty =
+            DependencyProperty.Register("Cy", typeof(int), typeof(DoublePendulumView), new PropertyMetadata(200));
 
         public int Cx
         {
@@ -42,10 +44,7 @@ namespace DoublePendulum
         // Using a DependencyProperty as the backing store for Cx.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CxProperty =
             DependencyProperty.Register("Cx", typeof(int), typeof(DoublePendulumView), new PropertyMetadata(400));
-
-
-
-
+        
         private void HandleTick(object sender, EventArgs e)
         {
             double num1 = -g * (2 * m1 + m2) * Math.Sin(a1);
@@ -69,20 +68,20 @@ namespace DoublePendulum
             double y2 = y1 + r2 * Math.Cos(a2);
 
             //firstArm.X1 = cx;
-            firstArm.Y1 = cy;
+            //firstArm.Y1 = Cy;
             firstArm.X2 = x1 + Cx;
-            firstArm.Y2 = y1 + cy;
+            firstArm.Y2 = y1 + Cy;
 
-            firstCircle.Center = new Point(x1 + Cx, y1 + cy);
+            firstCircle.Center = new Point(x1 + Cx, y1 + Cy);
             firstCircle.RadiusX = firstCircle.RadiusY = m1;
 
 
             secondArm.X1 = x1 + Cx;
-            secondArm.Y1 = y1 + cy;
+            secondArm.Y1 = y1 + Cy;
             secondArm.X2 = x2 + Cx;
-            secondArm.Y2 = y2 + cy;
+            secondArm.Y2 = y2 + Cy;
 
-            secondCircle.Center = new Point(x2 + Cx, y2 + cy);
+            secondCircle.Center = new Point(x2 + Cx, y2 + Cy);
             secondCircle.RadiusX = secondCircle.RadiusY = m2;
 
             a1_v += a1_a;
@@ -99,9 +98,9 @@ namespace DoublePendulum
                 {
                     Stroke = Brushes.White,
                     X1 = px2 + Cx,
-                    Y1 = py2 + cy,
+                    Y1 = py2 + Cy,
                     X2 = x2 + Cx,
-                    Y2 = y2 + cy,
+                    Y2 = y2 + Cy,
                     Fill = Brushes.Black,
                     StrokeThickness = 1,
                 };
@@ -136,7 +135,6 @@ namespace DoublePendulum
         {
             InitializeComponent();
             DataContext = this;
-            cy = 200;
             CreateTimer();
         }
     }

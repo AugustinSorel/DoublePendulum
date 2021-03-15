@@ -13,12 +13,12 @@ namespace DoublePendulum
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double r1 = 200;
-        private double r2 = 200;
+        private double r1 = 150;
+        private double r2 = 150;
         private double m1 = 30;
-        private double m2 = 10;
+        private double m2 = 30;
         private double a1 = Math.PI / 2;
-        private double a2 = Math.PI / 2;
+        private double a2 = Math.PI ;
         private double a1_v = 0;
         private double a2_v = 0;
         private double g = 1;
@@ -34,7 +34,7 @@ namespace DoublePendulum
         {
             InitializeComponent();
             cx = Width / 2;
-            cy = 50;
+            cy = Height * 0.25;
             CreateTimer();
         }
 
@@ -61,20 +61,20 @@ namespace DoublePendulum
             double y2 = y1 + r2 * Math.Cos(a2);
 
             mainArm.X1 = cx;
-            mainArm.Y1 = 50;
+            mainArm.Y1 = cy;
             mainArm.X2 = x1 + cx;
-            mainArm.Y2 = y1 + 50;
+            mainArm.Y2 = y1 + cy;
 
-            center.Center = new Point(x1 + cx, y1 + 50);
+            center.Center = new Point(x1 + cx, y1 + cy);
             center.RadiusX = center.RadiusY = m1;
 
 
             secondArm.X1 = x1 + cx;
-            secondArm.Y1 = y1 + 50;
+            secondArm.Y1 = y1 + cy;
             secondArm.X2 = x2 + cx;
-            secondArm.Y2 = y2 + 50;
+            secondArm.Y2 = y2 + cy;
 
-            center2.Center = new Point(x2 + cx, y2 + 50);
+            center2.Center = new Point(x2 + cx, y2 + cy);
             center2.RadiusX = center2.RadiusY = m2;
 
             a1_v += a1_a;
@@ -91,9 +91,9 @@ namespace DoublePendulum
                 {
                     Stroke = Brushes.Black,
                     X1 = px2 + cx,
-                    Y1 = py2 + 50,
+                    Y1 = py2 + cy,
                     X2 = x2 + cx,
-                    Y2 = y2 + 50,
+                    Y2 = y2 + cy,
                     Fill = Brushes.Black,
                     StrokeThickness = 1,
                 };

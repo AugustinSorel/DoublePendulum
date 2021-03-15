@@ -10,7 +10,7 @@
         WindowStyle="None"
         KeyDown="Window_KeyDown"
         Topmost="True"
-        Title="MainWindow" Height="600" Width="600">
+        Title="MainWindow" Height="800" Width="800">
     <Canvas Name="canvas">
         
         
@@ -20,16 +20,13 @@
         
         <Path Fill="Black" Name="bob">
             <Path.Data>
-                <EllipseGeometry x:Name="center"
-                    />
+                <EllipseGeometry x:Name="center"/>
             </Path.Data>
         </Path>
 
-
         <Path Fill="Black" Name="bob2">
             <Path.Data>
-                <EllipseGeometry x:Name="center2"
-                    />
+                <EllipseGeometry x:Name="center2"/>
             </Path.Data>
         </Path>
     </Canvas>

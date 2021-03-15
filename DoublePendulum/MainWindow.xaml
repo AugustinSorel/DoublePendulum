@@ -20,26 +20,11 @@
         </Grid.RowDefinitions>
 
         <local:TopBarView>
-            
+
         </local:TopBarView>
-        
-        <Canvas Grid.Row="1"  Name="canvas" Background="{Binding Source={x:Static local:GlobalColors.BackgroundColor}}">
 
-            <Line Name="firstArm" Stroke="White" StrokeThickness="2"/>
-            <Line Name="secondArm" Stroke="White" StrokeThickness="2"/>
-
-
-            <Path Fill="White">
-                <Path.Data>
-                    <EllipseGeometry x:Name="firstCircle"/>
-                </Path.Data>
-            </Path>
-
-            <Path Fill="White">
-                <Path.Data>
-                    <EllipseGeometry x:Name="secondCircle"/>
-                </Path.Data>
-            </Path>
-        </Canvas>
+        <local:DoublePendulumView Grid.Row="1">
+            
+        </local:DoublePendulumView>
     </Grid>
 </Window>

@@ -11,20 +11,20 @@
         KeyDown="Window_KeyDown"
         Topmost="True"
         Title="MainWindow" Height="800" Width="800">
-    <Canvas Name="canvas">
+    <Canvas Name="canvas" Background="Black">
         
         
-        <Line Name="firstArm" Stroke="Black" StrokeThickness="2"/>
-        <Line Name="secondArm" Stroke="Black" StrokeThickness="2"/>
+        <Line Name="firstArm" Stroke="White" StrokeThickness="2"/>
+        <Line Name="secondArm" Stroke="White" StrokeThickness="2"/>
         
         
-        <Path Fill="Black">
+        <Path Fill="White">
             <Path.Data>
                 <EllipseGeometry x:Name="firstCircle"/>
             </Path.Data>
         </Path>
 
-        <Path Fill="Black" Name="bob2">
+        <Path Fill="White">
             <Path.Data>
                 <EllipseGeometry x:Name="secondCircle"/>
             </Path.Data>

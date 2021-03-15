@@ -89,7 +89,7 @@ namespace DoublePendulum
             {
                 Line ellipse = new Line()
                 {
-                    Stroke = Brushes.Black,
+                    Stroke = Brushes.White,
                     X1 = px2 + cx,
                     Y1 = py2 + cy,
                     X2 = x2 + cx,
@@ -98,16 +98,16 @@ namespace DoublePendulum
                     StrokeThickness = 1,
                 };
 
-                Ellipse ellipse1 = new Ellipse()
-                {
-                    Fill = Brushes.Black,
-                    Height = 6,
-                    Width = 6,
-                };
-                Canvas.SetLeft(ellipse1, px2 + cx + 3);
-                Canvas.SetTop(ellipse1, py2 + cy + 3);
+                //Ellipse ellipse1 = new Ellipse()
+                //{
+                //    Fill = Brushes.Black,
+                //    Height = 6,
+                //    Width = 6,
+                //};
+                //Canvas.SetLeft(ellipse1, px2 + cx + 3);
+                //Canvas.SetTop(ellipse1, py2 + cy + 3);
 
-                canvas.Children.Add(ellipse1);
+                canvas.Children.Add(ellipse);
             }
 
             px2 = x2;

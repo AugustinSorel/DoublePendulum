@@ -13,10 +13,10 @@ namespace DoublePendulum
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double r1 = 150;
-        private double r2 = 150;
-        private double m1 = 30;
-        private double m2 = 30;
+        private double r1 = 200;
+        private double r2 = 200;
+        private double m1 = 10;
+        private double m2 = 10;
         private double a1 = Math.PI / 2;
         private double a2 = Math.PI ;
         private double a1_v = 0;
@@ -60,13 +60,13 @@ namespace DoublePendulum
             double x2 = x1 + r2 * Math.Sin(a2);
             double y2 = y1 + r2 * Math.Cos(a2);
 
-            mainArm.X1 = cx;
-            mainArm.Y1 = cy;
-            mainArm.X2 = x1 + cx;
-            mainArm.Y2 = y1 + cy;
+            firstArm.X1 = cx;
+            firstArm.Y1 = cy;
+            firstArm.X2 = x1 + cx;
+            firstArm.Y2 = y1 + cy;
 
-            center.Center = new Point(x1 + cx, y1 + cy);
-            center.RadiusX = center.RadiusY = m1;
+            firstCircle.Center = new Point(x1 + cx, y1 + cy);
+            firstCircle.RadiusX = firstCircle.RadiusY = m1;
 
 
             secondArm.X1 = x1 + cx;
@@ -74,8 +74,8 @@ namespace DoublePendulum
             secondArm.X2 = x2 + cx;
             secondArm.Y2 = y2 + cy;
 
-            center2.Center = new Point(x2 + cx, y2 + cy);
-            center2.RadiusX = center2.RadiusY = m2;
+            secondCircle.Center = new Point(x2 + cx, y2 + cy);
+            secondCircle.RadiusX = secondCircle.RadiusY = m2;
 
             a1_v += a1_a;
             a2_v += a2_a;
@@ -98,7 +98,16 @@ namespace DoublePendulum
                     StrokeThickness = 1,
                 };
 
-                canvas.Children.Add(ellipse);
+                Ellipse ellipse1 = new Ellipse()
+                {
+                    Fill = Brushes.Black,
+                    Height = 6,
+                    Width = 6,
+                };
+                Canvas.SetLeft(ellipse1, px2 + cx + 3);
+                Canvas.SetTop(ellipse1, py2 + cy + 3);
+
+                canvas.Children.Add(ellipse1);
             }
 
             px2 = x2;

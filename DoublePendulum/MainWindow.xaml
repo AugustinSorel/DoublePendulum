@@ -14,19 +14,19 @@
     <Canvas Name="canvas">
         
         
-        <Line Name="mainArm" Stroke="Black" StrokeThickness="2"/>
+        <Line Name="firstArm" Stroke="Black" StrokeThickness="2"/>
         <Line Name="secondArm" Stroke="Black" StrokeThickness="2"/>
         
         
-        <Path Fill="Black" Name="bob">
+        <Path Fill="Black">
             <Path.Data>
-                <EllipseGeometry x:Name="center"/>
+                <EllipseGeometry x:Name="firstCircle"/>
             </Path.Data>
         </Path>
 
         <Path Fill="Black" Name="bob2">
             <Path.Data>
-                <EllipseGeometry x:Name="center2"/>
+                <EllipseGeometry x:Name="secondCircle"/>
             </Path.Data>
         </Path>
     </Canvas>

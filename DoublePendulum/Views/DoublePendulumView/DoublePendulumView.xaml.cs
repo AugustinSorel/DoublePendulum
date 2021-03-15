@@ -1,16 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
@@ -29,7 +20,7 @@ namespace DoublePendulum
         private double a2 = Math.PI;
         private double a1_v = 0;
         private double a2_v = 0;
-        private double g = 1;
+        private double g = 0.1;
 
         private double px2 = -1;
         private double py2 = -1;

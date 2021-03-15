@@ -1,10 +1,5 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Shapes;
-using System.Windows.Threading;
 
 namespace DoublePendulum
 {
@@ -13,13 +8,9 @@ namespace DoublePendulum
     /// </summary>
     public partial class MainWindow : Window
     {
-        
-
-
         public MainWindow()
         {
             InitializeComponent();
-            
         }
 
         #region Key Event Handler

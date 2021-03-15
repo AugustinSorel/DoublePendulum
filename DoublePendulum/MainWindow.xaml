@@ -16,15 +16,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
-
         </Grid.RowDefinitions>
 
-        <local:TopBarView>
+        <local:TopBarView/>
 
-        </local:TopBarView>
-
-        <local:DoublePendulumView Grid.Row="1">
-            
-        </local:DoublePendulumView>
+        <local:DoublePendulumView Grid.Row="1"/>
     </Grid>
 </Window>

@@ -71,7 +71,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GlobalColors.cs" />
+    <Compile Include="Global\GlobalColors\GlobalColors.cs" />
     <Compile Include="Views\TopBarView\TopBarView.xaml.cs">
       <DependentUpon>TopBarView.xaml</DependentUpon>
     </Compile>
@@ -110,7 +110,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Global\GlobalColors\" />
     <Folder Include="Models\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>

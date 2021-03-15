@@ -20,13 +20,31 @@ namespace DoublePendulum
         private double a2 = Math.PI;
         private double a1_v = 0;
         private double a2_v = 0;
-        private double g = 0.1;
+        private double g = 1;
 
         private double px2 = -1;
         private double py2 = -1;
 
         private double cy;
-        private double cx;
+
+        public double Cy
+        {
+            get { return cy; }
+            set { cy = value; }
+        }
+
+        public int Cx
+        {
+            get { return (int)GetValue(CxProperty); }
+            set { SetValue(CxProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for Cx.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CxProperty =
+            DependencyProperty.Register("Cx", typeof(int), typeof(DoublePendulumView), new PropertyMetadata(400));
+
+
+
 
         private void HandleTick(object sender, EventArgs e)
         {
@@ -50,21 +68,21 @@ namespace DoublePendulum
             double x2 = x1 + r2 * Math.Sin(a2);
             double y2 = y1 + r2 * Math.Cos(a2);
 
-            firstArm.X1 = cx;
+            //firstArm.X1 = cx;
             firstArm.Y1 = cy;
-            firstArm.X2 = x1 + cx;
+            firstArm.X2 = x1 + Cx;
             firstArm.Y2 = y1 + cy;
 
-            firstCircle.Center = new Point(x1 + cx, y1 + cy);
+            firstCircle.Center = new Point(x1 + Cx, y1 + cy);
             firstCircle.RadiusX = firstCircle.RadiusY = m1;
 
 
-            secondArm.X1 = x1 + cx;
+            secondArm.X1 = x1 + Cx;
             secondArm.Y1 = y1 + cy;
-            secondArm.X2 = x2 + cx;
+            secondArm.X2 = x2 + Cx;
             secondArm.Y2 = y2 + cy;
 
-            secondCircle.Center = new Point(x2 + cx, y2 + cy);
+            secondCircle.Center = new Point(x2 + Cx, y2 + cy);
             secondCircle.RadiusX = secondCircle.RadiusY = m2;
 
             a1_v += a1_a;
@@ -80,9 +98,9 @@ namespace DoublePendulum
                 Line ellipse = new Line()
                 {
                     Stroke = Brushes.White,
-                    X1 = px2 + cx,
+                    X1 = px2 + Cx,
                     Y1 = py2 + cy,
-                    X2 = x2 + cx,
+                    X2 = x2 + Cx,
                     Y2 = y2 + cy,
                     Fill = Brushes.Black,
                     StrokeThickness = 1,
@@ -117,7 +135,7 @@ namespace DoublePendulum
         public DoublePendulumView()
         {
             InitializeComponent();
-            cx = 400;
+            DataContext = this;
             cy = 200;
             CreateTimer();
         }

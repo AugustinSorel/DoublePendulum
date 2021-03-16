@@ -45,9 +45,6 @@ namespace DoublePendulum
         public static readonly DependencyProperty CxProperty =
             DependencyProperty.Register("CenterX", typeof(int), typeof(DoublePendulumView), new PropertyMetadata(400));
 
-
-
-
         public int EndFirstArmX2
         {
             get { return (int)GetValue(EndFirstArmX2Property); }
@@ -58,8 +55,6 @@ namespace DoublePendulum
         public static readonly DependencyProperty EndFirstArmX2Property =
             DependencyProperty.Register("EndFirstArmX2", typeof(int), typeof(DoublePendulumView), new PropertyMetadata(0));
 
-
-
         public int EndFirstArmY2
         {
             get { return (int)GetValue(EndFirstArmY2Property); }
@@ -69,8 +64,6 @@ namespace DoublePendulum
         // Using a DependencyProperty as the backing store for EndFirstArmY2.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty EndFirstArmY2Property =
             DependencyProperty.Register("EndFirstArmY2", typeof(int), typeof(DoublePendulumView), new PropertyMetadata(0));
-
-
 
         private void HandleTick(object sender, EventArgs e)
         {
@@ -151,7 +144,7 @@ namespace DoublePendulum
         {
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(HandleTick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 1);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 5);
             dispatcherTimer.Start();
         }
         #endregion

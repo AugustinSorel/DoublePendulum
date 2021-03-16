@@ -25,7 +25,7 @@ namespace DoublePendulum
         private double px2 = -1;
         private double py2 = -1;
 
-        public int Cy
+        public int CenterY
         {
             get { return (int)GetValue(CyProperty); }
             set { SetValue(CyProperty, value); }
@@ -33,9 +33,9 @@ namespace DoublePendulum
 
         // Using a DependencyProperty as the backing store for Cy.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CyProperty =
-            DependencyProperty.Register("Cy", typeof(int), typeof(DoublePendulumView), new PropertyMetadata(200));
+            DependencyProperty.Register("CenterY", typeof(int), typeof(DoublePendulumView), new PropertyMetadata(200));
 
-        public int Cx
+        public int CenterX
         {
             get { return (int)GetValue(CxProperty); }
             set { SetValue(CxProperty, value); }
@@ -43,8 +43,35 @@ namespace DoublePendulum
 
         // Using a DependencyProperty as the backing store for Cx.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CxProperty =
-            DependencyProperty.Register("Cx", typeof(int), typeof(DoublePendulumView), new PropertyMetadata(400));
-        
+            DependencyProperty.Register("CenterX", typeof(int), typeof(DoublePendulumView), new PropertyMetadata(400));
+
+
+
+
+        public int EndFirstArmX2
+        {
+            get { return (int)GetValue(EndFirstArmX2Property); }
+            set { SetValue(EndFirstArmX2Property, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for EndFirstArmX2.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EndFirstArmX2Property =
+            DependencyProperty.Register("EndFirstArmX2", typeof(int), typeof(DoublePendulumView), new PropertyMetadata(0));
+
+
+
+        public int EndFirstArmY2
+        {
+            get { return (int)GetValue(EndFirstArmY2Property); }
+            set { SetValue(EndFirstArmY2Property, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for EndFirstArmY2.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EndFirstArmY2Property =
+            DependencyProperty.Register("EndFirstArmY2", typeof(int), typeof(DoublePendulumView), new PropertyMetadata(0));
+
+
+
         private void HandleTick(object sender, EventArgs e)
         {
             double num1 = -g * (2 * m1 + m2) * Math.Sin(a1);
@@ -67,21 +94,19 @@ namespace DoublePendulum
             double x2 = x1 + r2 * Math.Sin(a2);
             double y2 = y1 + r2 * Math.Cos(a2);
 
-            //firstArm.X1 = cx;
-            //firstArm.Y1 = Cy;
-            firstArm.X2 = x1 + Cx;
-            firstArm.Y2 = y1 + Cy;
+            EndFirstArmX2 = (int)x1 + CenterX;
+            EndFirstArmY2 = (int)y1 + CenterY;
 
-            firstCircle.Center = new Point(x1 + Cx, y1 + Cy);
+            firstCircle.Center = new Point(x1 + CenterX, y1 + CenterY);
             firstCircle.RadiusX = firstCircle.RadiusY = m1;
 
 
-            secondArm.X1 = x1 + Cx;
-            secondArm.Y1 = y1 + Cy;
-            secondArm.X2 = x2 + Cx;
-            secondArm.Y2 = y2 + Cy;
+            secondArm.X1 = x1 + CenterX;
+            secondArm.Y1 = y1 + CenterY;
+            secondArm.X2 = x2 + CenterX;
+            secondArm.Y2 = y2 + CenterY;
 
-            secondCircle.Center = new Point(x2 + Cx, y2 + Cy);
+            secondCircle.Center = new Point(x2 + CenterX, y2 + CenterY);
             secondCircle.RadiusX = secondCircle.RadiusY = m2;
 
             a1_v += a1_a;
@@ -97,10 +122,10 @@ namespace DoublePendulum
                 Line ellipse = new Line()
                 {
                     Stroke = Brushes.White,
-                    X1 = px2 + Cx,
-                    Y1 = py2 + Cy,
-                    X2 = x2 + Cx,
-                    Y2 = y2 + Cy,
+                    X1 = px2 + CenterX,
+                    Y1 = py2 + CenterY,
+                    X2 = x2 + CenterX,
+                    Y2 = y2 + CenterY,
                     Fill = Brushes.Black,
                     StrokeThickness = 1,
                 };

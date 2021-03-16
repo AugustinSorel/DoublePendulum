@@ -9,9 +9,10 @@
     <Canvas Name="canvas" Background="{Binding Source={x:Static local:GlobalColors.BackgroundColor}}">
 
         <Line Name="firstArm" Stroke="White" StrokeThickness="2"
-              X1="{Binding Path=Cx}"
-              Y1="{Binding Path=Cy}"
-              
+              X1="{Binding Path=CenterX}"
+              Y1="{Binding Path=CenterY}"
+              X2="{Binding Path=EndFirstArmX2}"
+              Y2="{Binding Path=EndFirstArmY2}"
               />
         <Line Name="secondArm" Stroke="White" StrokeThickness="2"/>
 

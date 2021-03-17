@@ -71,7 +71,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DoublePendulumModel.cs" />
+    <Compile Include="Models\DoublePendulumModel\DoublePendulumModel.cs" />
     <Compile Include="ViewModels\DoublePendulumViewModel\DoublePendulumViewModel.cs" />
     <Compile Include="Global\GlobalColors\GlobalColors.cs" />
     <Compile Include="Views\TopBarView\TopBarView.xaml.cs">
@@ -111,8 +111,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

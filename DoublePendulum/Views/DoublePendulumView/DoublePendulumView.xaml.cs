@@ -25,25 +25,17 @@ namespace DoublePendulum
         private double px2 = -1;
         private double py2 = -1;
 
-        public int CenterY
+
+
+        public Point CenterVector
         {
-            get { return (int)GetValue(CyProperty); }
-            set { SetValue(CyProperty, value); }
+            get { return (Point)GetValue(CenterVectorProperty); }
+            set { SetValue(CenterVectorProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for Cy.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CyProperty =
-            DependencyProperty.Register("CenterY", typeof(int), typeof(DoublePendulumView), new PropertyMetadata(200));
-
-        public int CenterX
-        {
-            get { return (int)GetValue(CxProperty); }
-            set { SetValue(CxProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for Cx.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CxProperty =
-            DependencyProperty.Register("CenterX", typeof(int), typeof(DoublePendulumView), new PropertyMetadata(400));
+        // Using a DependencyProperty as the backing store for vector.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CenterVectorProperty =
+            DependencyProperty.Register("CenterVector", typeof(Point), typeof(DoublePendulumView), new PropertyMetadata(new Point(400, 200)));
 
         public int EndFirstArmX2
         {
@@ -87,19 +79,19 @@ namespace DoublePendulum
             double x2 = x1 + r2 * Math.Sin(a2);
             double y2 = y1 + r2 * Math.Cos(a2);
 
-            EndFirstArmX2 = (int)x1 + CenterX;
-            EndFirstArmY2 = (int)y1 + CenterY;
+            EndFirstArmX2 = (int)x1 + (int)CenterVector.X;
+            EndFirstArmY2 = (int)y1 + (int)CenterVector.Y;
 
-            firstCircle.Center = new Point(x1 + CenterX, y1 + CenterY);
+            firstCircle.Center = new Point(x1 + CenterVector.X, y1 + CenterVector.Y);
             firstCircle.RadiusX = firstCircle.RadiusY = m1;
 
 
-            secondArm.X1 = x1 + CenterX;
-            secondArm.Y1 = y1 + CenterY;
-            secondArm.X2 = x2 + CenterX;
-            secondArm.Y2 = y2 + CenterY;
+            secondArm.X1 = x1 + CenterVector.X;
+            secondArm.Y1 = y1 + CenterVector.Y;
+            secondArm.X2 = x2 + CenterVector.X;
+            secondArm.Y2 = y2 + CenterVector.Y;
 
-            secondCircle.Center = new Point(x2 + CenterX, y2 + CenterY);
+            secondCircle.Center = new Point(x2 + (int)CenterVector.X, y2 + CenterVector.Y);
             secondCircle.RadiusX = secondCircle.RadiusY = m2;
 
             a1_v += a1_a;
@@ -115,10 +107,10 @@ namespace DoublePendulum
                 Line ellipse = new Line()
                 {
                     Stroke = Brushes.White,
-                    X1 = px2 + CenterX,
-                    Y1 = py2 + CenterY,
-                    X2 = x2 + CenterX,
-                    Y2 = y2 + CenterY,
+                    X1 = px2 + CenterVector.X,
+                    Y1 = py2 + CenterVector.Y,
+                    X2 = x2 + CenterVector.X,
+                    Y2 = y2 + CenterVector.Y,
                     Fill = Brushes.Black,
                     StrokeThickness = 1,
                 };

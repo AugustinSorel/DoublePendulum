@@ -71,6 +71,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DoublePendulumModel.cs" />
     <Compile Include="ViewModels\DoublePendulumViewModel\DoublePendulumViewModel.cs" />
     <Compile Include="Global\GlobalColors\GlobalColors.cs" />
     <Compile Include="Views\TopBarView\TopBarView.xaml.cs">

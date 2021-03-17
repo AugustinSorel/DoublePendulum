@@ -92,8 +92,11 @@ namespace DoublePendulum
 
         #endregion
 
+        private DoublePendulumModel doublePendulumModel;
+
         public DoublePendulumViewModel()
         {
+            doublePendulumModel = new DoublePendulumModel();
             CreateTimer();
         }
 
@@ -106,9 +109,6 @@ namespace DoublePendulum
         private double a1_v = 0;
         private double a2_v = 0;
         private double g = 1;
-
-        private double px2 = -1;
-        private double py2 = -1;
 
         private void HandleTick(object sender, EventArgs e)
         {
@@ -150,14 +150,13 @@ namespace DoublePendulum
 
             //a1_v *= 0.99;
             //a2_v *= 0.99;
-
-            if (px2 != -1)
+            if (doublePendulumModel.PreviousXNotNull())
             {
                 Line ellipse = new Line()
                 {
                     Stroke = Brushes.White,
-                    X1 = px2 + CenterPoint.X,
-                    Y1 = py2 + CenterPoint.Y,
+                    X1 = doublePendulumModel.previousX2 + CenterPoint.X,
+                    Y1 = doublePendulumModel.previousY2 + CenterPoint.Y,
                     X2 = x2 + CenterPoint.X,
                     Y2 = y2 + CenterPoint.Y,
                     Fill = Brushes.Black,
@@ -176,8 +175,7 @@ namespace DoublePendulum
                 (Application.Current.Windows[0] as MainWindow).doublePendulumView2.canvas.Children.Add(ellipse);
             }
 
-            px2 = x2;
-            py2 = y2;
+            doublePendulumModel.StoreCurrentPoint(x2, y2);
         }
 
         #region Create Timer

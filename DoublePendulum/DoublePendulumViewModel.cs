@@ -29,6 +29,19 @@ namespace DoublePendulum
         // Using a DependencyProperty as the backing store for EndFirstArmPoint.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty EndFirstArmPointProperty =
             DependencyProperty.Register("EndFirstArmPoint", typeof(Point), typeof(DoublePendulumView), new PropertyMetadata(new Point(0, 0)));
+
+
+
+        public Point FirstCirclePoint
+        {
+            get { return (Point)GetValue(FirstCirclePointProperty); }
+            set { SetValue(FirstCirclePointProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for FirstCirclePoint.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty FirstCirclePointProperty =
+            DependencyProperty.Register("FirstCirclePoint", typeof(Point), typeof(DoublePendulumViewModel), new PropertyMetadata(new Point(0, 0)));
+
         #endregion
 
         public DoublePendulumView DoublePendulumView { get; }
@@ -37,15 +50,6 @@ namespace DoublePendulum
         {
             CreateTimer();
             DoublePendulumView = doublePendulumView;
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
         }
 
         private double r1 = 200;
@@ -85,7 +89,7 @@ namespace DoublePendulum
 
             EndFirstArmPoint = new Point(x1 + CenterPoint.X, y1 + CenterPoint.Y);
 
-            DoublePendulumView.firstCircle.Center = new Point(x1 + CenterPoint.X, y1 + CenterPoint.Y);
+            FirstCirclePoint = new Point(x1 + CenterPoint.X, y1 + CenterPoint.Y);
             DoublePendulumView.firstCircle.RadiusX = DoublePendulumView.firstCircle.RadiusY = m1;
 
             DoublePendulumView.secondArm.X1 = x1 + CenterPoint.X;
@@ -140,6 +144,14 @@ namespace DoublePendulum
             dispatcherTimer.Tick += new EventHandler(HandleTick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
             dispatcherTimer.Start();
+        }
+        #endregion
+
+        #region Property Changed Event Handler
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
     }

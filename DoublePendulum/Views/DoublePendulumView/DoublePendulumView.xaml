@@ -19,7 +19,9 @@
 
         <Path Fill="White">
             <Path.Data>
-                <EllipseGeometry x:Name="firstCircle"/>
+                <EllipseGeometry x:Name="firstCircle"
+                                 Center="{Binding Path=FirstCirclePoint}"
+                                 />
             </Path.Data>
         </Path>
 

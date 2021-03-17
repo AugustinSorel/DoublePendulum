@@ -132,6 +132,11 @@ namespace DoublePendulum
             double x2 = x1 + r2 * Math.Sin(a2);
             double y2 = y1 + r2 * Math.Cos(a2);
 
+            a1_v += a1_a;
+            a2_v += a2_a;
+            a1 += a1_v;
+            a2 += a2_v;
+
             EndFirstArmPoint = new Point(x1 + CenterPoint.X, y1 + CenterPoint.Y);
 
             FirstCirclePoint = new Point(x1 + CenterPoint.X, y1 + CenterPoint.Y);
@@ -142,11 +147,6 @@ namespace DoublePendulum
 
             SecondCirclePoint = new Point(x2 + CenterPoint.X, y2 + CenterPoint.Y);
             SecondCircleRadius = new Point(m2, m2);
-
-            a1_v += a1_a;
-            a2_v += a2_a;
-            a1 += a1_v;
-            a2 += a2_v;
 
             //a1_v *= 0.99;
             //a2_v *= 0.99;

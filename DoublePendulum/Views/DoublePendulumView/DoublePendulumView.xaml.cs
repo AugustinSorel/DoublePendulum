@@ -25,37 +25,27 @@ namespace DoublePendulum
         private double px2 = -1;
         private double py2 = -1;
 
-
-
-        public Point CenterVector
+        public Point CenterPoint
         {
-            get { return (Point)GetValue(CenterVectorProperty); }
-            set { SetValue(CenterVectorProperty, value); }
+            get { return (Point)GetValue(CenterPointProperty); }
+            set { SetValue(CenterPointProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for vector.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CenterVectorProperty =
-            DependencyProperty.Register("CenterVector", typeof(Point), typeof(DoublePendulumView), new PropertyMetadata(new Point(400, 200)));
+        public static readonly DependencyProperty CenterPointProperty =
+            DependencyProperty.Register("CenterPoint", typeof(Point), typeof(DoublePendulumView), new PropertyMetadata(new Point(400, 200)));
 
-        public int EndFirstArmX2
+
+
+        public Point EndFirstArmPoint
         {
-            get { return (int)GetValue(EndFirstArmX2Property); }
-            set { SetValue(EndFirstArmX2Property, value); }
+            get { return (Point)GetValue(EndFirstArmPointProperty); }
+            set { SetValue(EndFirstArmPointProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for EndFirstArmX2.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty EndFirstArmX2Property =
-            DependencyProperty.Register("EndFirstArmX2", typeof(int), typeof(DoublePendulumView), new PropertyMetadata(0));
-
-        public int EndFirstArmY2
-        {
-            get { return (int)GetValue(EndFirstArmY2Property); }
-            set { SetValue(EndFirstArmY2Property, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for EndFirstArmY2.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty EndFirstArmY2Property =
-            DependencyProperty.Register("EndFirstArmY2", typeof(int), typeof(DoublePendulumView), new PropertyMetadata(0));
+        // Using a DependencyProperty as the backing store for EndFirstArmPoint.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EndFirstArmPointProperty =
+            DependencyProperty.Register("EndFirstArmPoint", typeof(Point), typeof(DoublePendulumView), new PropertyMetadata(new Point(0, 0)));
 
         private void HandleTick(object sender, EventArgs e)
         {
@@ -79,19 +69,18 @@ namespace DoublePendulum
             double x2 = x1 + r2 * Math.Sin(a2);
             double y2 = y1 + r2 * Math.Cos(a2);
 
-            EndFirstArmX2 = (int)x1 + (int)CenterVector.X;
-            EndFirstArmY2 = (int)y1 + (int)CenterVector.Y;
+            EndFirstArmPoint = new Point(x1 + CenterPoint.X, y1 + CenterPoint.Y);
 
-            firstCircle.Center = new Point(x1 + CenterVector.X, y1 + CenterVector.Y);
+            firstCircle.Center = new Point(x1 + CenterPoint.X, y1 + CenterPoint.Y);
             firstCircle.RadiusX = firstCircle.RadiusY = m1;
 
 
-            secondArm.X1 = x1 + CenterVector.X;
-            secondArm.Y1 = y1 + CenterVector.Y;
-            secondArm.X2 = x2 + CenterVector.X;
-            secondArm.Y2 = y2 + CenterVector.Y;
+            secondArm.X1 = x1 + CenterPoint.X;
+            secondArm.Y1 = y1 + CenterPoint.Y;
+            secondArm.X2 = x2 + CenterPoint.X;
+            secondArm.Y2 = y2 + CenterPoint.Y;
 
-            secondCircle.Center = new Point(x2 + (int)CenterVector.X, y2 + CenterVector.Y);
+            secondCircle.Center = new Point(x2 + (int)CenterPoint.X, y2 + CenterPoint.Y);
             secondCircle.RadiusX = secondCircle.RadiusY = m2;
 
             a1_v += a1_a;
@@ -107,10 +96,10 @@ namespace DoublePendulum
                 Line ellipse = new Line()
                 {
                     Stroke = Brushes.White,
-                    X1 = px2 + CenterVector.X,
-                    Y1 = py2 + CenterVector.Y,
-                    X2 = x2 + CenterVector.X,
-                    Y2 = y2 + CenterVector.Y,
+                    X1 = px2 + CenterPoint.X,
+                    Y1 = py2 + CenterPoint.Y,
+                    X2 = x2 + CenterPoint.X,
+                    Y2 = y2 + CenterPoint.Y,
                     Fill = Brushes.Black,
                     StrokeThickness = 1,
                 };
@@ -136,7 +125,7 @@ namespace DoublePendulum
         {
             DispatcherTimer dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += new EventHandler(HandleTick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 5);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
             dispatcherTimer.Start();
         }
         #endregion

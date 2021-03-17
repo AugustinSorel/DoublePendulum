@@ -50,6 +50,26 @@ namespace DoublePendulum
         public static readonly DependencyProperty SecondCirclePointProperty =
             DependencyProperty.Register("SecondCirclePoint", typeof(Point), typeof(DoublePendulumViewModel), new PropertyMetadata(new Point(0, 0)));
 
+        public Point SecondArmPoint
+        {
+            get { return (Point)GetValue(SecondArmPointProperty); }
+            set { SetValue(SecondArmPointProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SecondArmPoint.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SecondArmPointProperty =
+            DependencyProperty.Register("SecondArmPoint", typeof(Point), typeof(DoublePendulumViewModel), new PropertyMetadata(new Point(0, 0)));
+
+        public Point SecondArmEndPoint
+        {
+            get { return (Point)GetValue(SecondArmEndPointProperty); }
+            set { SetValue(SecondArmEndPointProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for SecondArmEndPoint.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty SecondArmEndPointProperty =
+            DependencyProperty.Register("SecondArmEndPoint", typeof(Point), typeof(DoublePendulumViewModel), new PropertyMetadata(new Point(0,0)));
+
         #endregion
 
         public DoublePendulumView DoublePendulumView { get; }
@@ -100,10 +120,8 @@ namespace DoublePendulum
             FirstCirclePoint = new Point(x1 + CenterPoint.X, y1 + CenterPoint.Y);
             DoublePendulumView.firstCircle.RadiusX = DoublePendulumView.firstCircle.RadiusY = m1;
 
-            DoublePendulumView.secondArm.X1 = x1 + CenterPoint.X;
-            DoublePendulumView.secondArm.Y1 = y1 + CenterPoint.Y;
-            DoublePendulumView.secondArm.X2 = x2 + CenterPoint.X;
-            DoublePendulumView.secondArm.Y2 = y2 + CenterPoint.Y;
+            SecondArmPoint = new Point(x1 + CenterPoint.X, y1 + CenterPoint.Y);
+            SecondArmEndPoint = new Point(x2 + CenterPoint.X, y2 + CenterPoint.Y);
 
             SecondCirclePoint = new Point(x2 + CenterPoint.X, y2 + CenterPoint.Y);
             DoublePendulumView.secondCircle.RadiusX = DoublePendulumView.secondCircle.RadiusY = m2;

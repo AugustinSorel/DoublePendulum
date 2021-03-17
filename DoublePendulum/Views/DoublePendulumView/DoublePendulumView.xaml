@@ -14,7 +14,13 @@
               X2="{Binding Path=EndFirstArmPoint.X}"
               Y2="{Binding Path=EndFirstArmPoint.Y}"
               />
-        <Line Name="secondArm" Stroke="White" StrokeThickness="2"/>
+        
+        <Line Name="secondArm" Stroke="White" StrokeThickness="2"
+              X1="{Binding Path=SecondArmPoint.X}"
+              Y1="{Binding Path=SecondArmPoint.Y}"
+              X2="{Binding Path=SecondArmEndPoint.X}"
+              Y2="{Binding Path=SecondArmEndPoint.Y}"
+              />
 
 
         <Path Fill="White">

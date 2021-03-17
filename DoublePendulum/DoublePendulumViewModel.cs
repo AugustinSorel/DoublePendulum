@@ -70,6 +70,18 @@ namespace DoublePendulum
         public static readonly DependencyProperty SecondArmEndPointProperty =
             DependencyProperty.Register("SecondArmEndPoint", typeof(Point), typeof(DoublePendulumViewModel), new PropertyMetadata(new Point(0,0)));
 
+
+
+        public Point FirstCircleRadius
+        {
+            get { return (Point)GetValue(FirstCirlceRadiusProperty); }
+            set { SetValue(FirstCirlceRadiusProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for FirstCirlceRadius.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty FirstCirlceRadiusProperty =
+            DependencyProperty.Register("FirstCirlceRadius", typeof(Point), typeof(DoublePendulumViewModel), new PropertyMetadata(new Point(10, 10)));
+
         #endregion
 
         public DoublePendulumView DoublePendulumView { get; }
@@ -118,7 +130,7 @@ namespace DoublePendulum
             EndFirstArmPoint = new Point(x1 + CenterPoint.X, y1 + CenterPoint.Y);
 
             FirstCirclePoint = new Point(x1 + CenterPoint.X, y1 + CenterPoint.Y);
-            DoublePendulumView.firstCircle.RadiusX = DoublePendulumView.firstCircle.RadiusY = m1;
+            FirstCircleRadius = new Point(m1, m1);
 
             SecondArmPoint = new Point(x1 + CenterPoint.X, y1 + CenterPoint.Y);
             SecondArmEndPoint = new Point(x2 + CenterPoint.X, y2 + CenterPoint.Y);

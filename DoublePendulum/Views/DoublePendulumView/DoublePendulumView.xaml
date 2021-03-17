@@ -27,6 +27,8 @@
             <Path.Data>
                 <EllipseGeometry x:Name="firstCircle"
                                  Center="{Binding Path=FirstCirclePoint}"
+                                 RadiusX="{Binding Path=FirstCircleRadius.X}"
+                                 RadiusY="{Binding Path=FirstCircleRadius.Y}"
                                  />
             </Path.Data>
         </Path>

@@ -2,7 +2,7 @@
 {
     static class GlobalColors
     {
-        public static string StrongBackgroundColor { get; set; } = "#FF2c3e50";
-        public static string BackgroundColor { get; set; } = "#FF34495e";
+        public static string StrongBackgroundColor { get; set; } = "Black";
+        public static string BackgroundColor { get; set; } = "Black";
     }
 }

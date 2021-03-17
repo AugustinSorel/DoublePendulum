@@ -92,12 +92,9 @@ namespace DoublePendulum
 
         #endregion
 
-        public DoublePendulumView DoublePendulumView { get; }
-
-        public DoublePendulumViewModel(DoublePendulumView doublePendulumView)
+        public DoublePendulumViewModel()
         {
             CreateTimer();
-            DoublePendulumView = doublePendulumView;
         }
 
         private double r1 = 200;
@@ -176,7 +173,7 @@ namespace DoublePendulum
                 //Canvas.SetLeft(ellipse1, px2 + cx + 3);
                 //Canvas.SetTop(ellipse1, py2 + cy + 3);
 
-                DoublePendulumView.canvas.Children.Add(ellipse);
+                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.canvas.Children.Add(ellipse);
             }
 
             px2 = x2;

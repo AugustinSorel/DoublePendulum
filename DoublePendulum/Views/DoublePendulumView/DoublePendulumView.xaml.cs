@@ -10,7 +10,7 @@ namespace DoublePendulum
         public DoublePendulumView()
         {
             InitializeComponent();
-            DoublePendulumViewModel doublePendulumViewModel = new DoublePendulumViewModel(this);
+            DoublePendulumViewModel doublePendulumViewModel = new DoublePendulumViewModel();
             DataContext = doublePendulumViewModel;
         }
     }

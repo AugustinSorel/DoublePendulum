@@ -27,7 +27,9 @@
 
         <Path Fill="White">
             <Path.Data>
-                <EllipseGeometry x:Name="secondCircle"/>
+                <EllipseGeometry x:Name="secondCircle"
+                                 Center="{Binding Path=SecondCirclePoint}"
+                                 />
             </Path.Data>
         </Path>
     </Canvas>

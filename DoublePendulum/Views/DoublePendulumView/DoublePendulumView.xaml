@@ -37,6 +37,8 @@
             <Path.Data>
                 <EllipseGeometry x:Name="secondCircle"
                                  Center="{Binding Path=SecondCirclePoint}"
+                                 RadiusX="{Binding Path=SecondCircleRadius.X}"
+                                 RadiusY="{Binding Path=SecondCircleRadius.Y}"
                                  />
             </Path.Data>
         </Path>

@@ -5,8 +5,32 @@ namespace DoublePendulum
 {
     class DoublePendulumModel
     {
+        private double m1;
+        private double m2;
+        private readonly double r1;
+        private readonly double r2;
+        private double a1;
+        private double a2;
+        private double a1_v;
+        private double a2_v;
+        private readonly double g;
 
-        private double m1 = 10;
+        public double previousX2;
+        public double previousY2;
+
+        public DoublePendulumModel()
+        {
+            m1 = 10;
+            m2 = 10;
+            r1 = 200;
+            r2 = 200;
+            a1 = Math.PI / 2;
+            a2 = Math.PI;
+            a1_v = 0;
+            previousX2 = -1;
+            previousY2 = -1;
+            g = 1;
+        }
 
         public double M1
         {
@@ -14,25 +38,11 @@ namespace DoublePendulum
             set { m1 = value; }
         }
 
-        private double m2 = 10;
-
         public double M2
         {
             get { return m2; }
             set { m2 = value; }
         }
-
-
-        private double r1 = 200;
-        private double r2 = 200;
-        private double a1 = Math.PI / 2;
-        private double a2 = Math.PI;
-        private double a1_v = 0;
-        private double a2_v = 0;
-        private double g = 1;
-
-        public double previousX2 = -1;
-        public double previousY2 = -1;
 
         internal bool PreviousXNotNull()
         {

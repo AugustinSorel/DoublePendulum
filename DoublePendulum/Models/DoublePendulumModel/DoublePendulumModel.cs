@@ -67,20 +67,14 @@ namespace DoublePendulum
             a2 += a2_v;
         }
 
-
-        internal double GetX2()
-        {
-            return r2 * Math.Sin(a2);
-        }
-
-        internal double GetY2()
-        {
-            return r2 * Math.Cos(a2);
-        }
-
         internal Point GetFirstPoint()
         {
             return new Point(r1 * Math.Sin(a1), r1 * Math.Cos(a1));
+        }
+
+        internal Point GetSecondPoint()
+        {
+            return new Point(r2 * Math.Sin(a2), r2 * Math.Cos(a2));
         }
     }
 }

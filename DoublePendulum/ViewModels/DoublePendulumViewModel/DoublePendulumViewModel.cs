@@ -103,9 +103,9 @@ namespace DoublePendulum
         private void HandleTick(object sender, EventArgs e)
         {
             Point firstPoint = doublePendulumModel.GetFirstPoint();
-            
-            double x2 = firstPoint.X + doublePendulumModel.GetX2();
-            double y2 = firstPoint.Y + doublePendulumModel.GetY2();
+            Point secondPoint = doublePendulumModel.GetSecondPoint();
+            secondPoint.X += firstPoint.X;
+            secondPoint.Y += firstPoint.Y;
 
             doublePendulumModel.Calculate2();
 
@@ -115,39 +115,18 @@ namespace DoublePendulum
             FirstCircleRadius = new Point(doublePendulumModel.M1, doublePendulumModel.M1);
 
             SecondArmPoint = new Point(firstPoint.X + CenterPoint.X, firstPoint.Y + CenterPoint.Y);
-            SecondArmEndPoint = new Point(x2 + CenterPoint.X, y2 + CenterPoint.Y);
+            SecondArmEndPoint = new Point(secondPoint.X + CenterPoint.X, secondPoint.Y + CenterPoint.Y);
 
-            SecondCirclePoint = new Point(x2 + CenterPoint.X, y2 + CenterPoint.Y);
+            SecondCirclePoint = new Point(secondPoint.X + CenterPoint.X, secondPoint.Y + CenterPoint.Y);
             SecondCircleRadius = new Point(doublePendulumModel.M2, doublePendulumModel.M2);
 
+            // friction
             //a1_v *= 0.99;
             //a2_v *= 0.99;
-            if (doublePendulumModel.PreviousXNotNull())
-            {
-                Line ellipse = new Line()
-                {
-                    Stroke = Brushes.White,
-                    X1 = doublePendulumModel.previousX2 + CenterPoint.X,
-                    Y1 = doublePendulumModel.previousY2 + CenterPoint.Y,
-                    X2 = x2 + CenterPoint.X,
-                    Y2 = y2 + CenterPoint.Y,
-                    Fill = Brushes.Black,
-                    StrokeThickness = 1,
-                };
 
-                //Ellipse ellipse1 = new Ellipse()
-                //{
-                //    Fill = Brushes.Black,
-                //    Height = 6,
-                //    Width = 6,
-                //};
-                //Canvas.SetLeft(ellipse1, px2 + cx + 3);
-                //Canvas.SetTop(ellipse1, py2 + cy + 3);
+            
 
-                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.canvas.Children.Add(ellipse);
-            }
-
-            doublePendulumModel.StoreCurrentPoint(x2, y2);
+            doublePendulumModel.StoreCurrentPoint(secondPoint.X, secondPoint.Y);
         }
 
         #region Create Timer

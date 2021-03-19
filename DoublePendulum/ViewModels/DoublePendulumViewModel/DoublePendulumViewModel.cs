@@ -102,31 +102,58 @@ namespace DoublePendulum
 
         private void HandleTick(object sender, EventArgs e)
         {
-            Point firstPoint = doublePendulumModel.GetFirstPoint();
-            Point secondPoint = doublePendulumModel.GetSecondPoint();
-            secondPoint.X += firstPoint.X;
-            secondPoint.Y += firstPoint.Y;
+            Point firstCirclePoint = doublePendulumModel.GetFirstPoint();
+            Point secondCirclePoint = doublePendulumModel.GetSecondPoint();
+            secondCirclePoint.X += firstCirclePoint.X;
+            secondCirclePoint.Y += firstCirclePoint.Y;
 
             doublePendulumModel.Calculate2();
 
-            EndFirstArmPoint = new Point(firstPoint.X + CenterPoint.X, firstPoint.Y + CenterPoint.Y);
+            EndFirstArmPoint = new Point(firstCirclePoint.X + CenterPoint.X, firstCirclePoint.Y + CenterPoint.Y);
 
-            FirstCirclePoint = new Point(firstPoint.X + CenterPoint.X, firstPoint.Y + CenterPoint.Y);
+            FirstCirclePoint = new Point(firstCirclePoint.X + CenterPoint.X, firstCirclePoint.Y + CenterPoint.Y);
             FirstCircleRadius = new Point(doublePendulumModel.M1, doublePendulumModel.M1);
 
-            SecondArmPoint = new Point(firstPoint.X + CenterPoint.X, firstPoint.Y + CenterPoint.Y);
-            SecondArmEndPoint = new Point(secondPoint.X + CenterPoint.X, secondPoint.Y + CenterPoint.Y);
+            SecondArmPoint = new Point(firstCirclePoint.X + CenterPoint.X, firstCirclePoint.Y + CenterPoint.Y);
+            SecondArmEndPoint = new Point(secondCirclePoint.X + CenterPoint.X, secondCirclePoint.Y + CenterPoint.Y);
 
-            SecondCirclePoint = new Point(secondPoint.X + CenterPoint.X, secondPoint.Y + CenterPoint.Y);
+            SecondCirclePoint = new Point(secondCirclePoint.X + CenterPoint.X, secondCirclePoint.Y + CenterPoint.Y);
             SecondCircleRadius = new Point(doublePendulumModel.M2, doublePendulumModel.M2);
 
             // friction
             //a1_v *= 0.99;
             //a2_v *= 0.99;
 
-            
+            DrawOldPosition(secondCirclePoint);
+        }
 
-            doublePendulumModel.StoreCurrentPoint(secondPoint.X, secondPoint.Y);
+        private void DrawOldPosition(Point secondCirclePoint)
+        {
+            if (doublePendulumModel.PreviousXNotNull())
+            {
+                Line ellipse = new Line()
+                {
+                    Stroke = Brushes.White,
+                    X1 = doublePendulumModel.previousX2 + CenterPoint.X,
+                    Y1 = doublePendulumModel.previousY2 + CenterPoint.Y,
+                    X2 = secondCirclePoint.X + CenterPoint.X,
+                    Y2 = secondCirclePoint.Y + CenterPoint.Y,
+                    Fill = Brushes.Black,
+                    StrokeThickness = 1,
+                };
+
+                //Ellipse ellipse1 = new Ellipse()
+                //{
+                //    Fill = Brushes.Black,
+                //    Height = 6,
+                //    Width = 6,
+                //};
+                //Canvas.SetLeft(ellipse1, px2 + cx + 3);
+                //Canvas.SetTop(ellipse1, py2 + cy + 3);
+
+                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.canvas.Children.Add(ellipse);
+            }
+            doublePendulumModel.StoreCurrentPoint(secondCirclePoint.X, secondCirclePoint.Y);
         }
 
         #region Create Timer

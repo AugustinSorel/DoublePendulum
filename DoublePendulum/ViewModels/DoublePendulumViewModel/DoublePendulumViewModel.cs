@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
@@ -131,25 +132,25 @@ namespace DoublePendulum
         {
             if (doublePendulumModel.PreviousXNotNull())
             {
-                Line ellipse = new Line()
-                {
-                    Stroke = Brushes.White,
-                    X1 = doublePendulumModel.previousX2 + CenterPoint.X,
-                    Y1 = doublePendulumModel.previousY2 + CenterPoint.Y,
-                    X2 = secondCirclePoint.X + CenterPoint.X,
-                    Y2 = secondCirclePoint.Y + CenterPoint.Y,
-                    Fill = Brushes.Black,
-                    StrokeThickness = 1,
-                };
-
-                //Ellipse ellipse1 = new Ellipse()
+                //Line ellipse = new Line()
                 //{
+                //    Stroke = Brushes.White,
+                //    X1 = doublePendulumModel.previousX2 + CenterPoint.X,
+                //    Y1 = doublePendulumModel.previousY2 + CenterPoint.Y,
+                //    X2 = secondCirclePoint.X + CenterPoint.X,
+                //    Y2 = secondCirclePoint.Y + CenterPoint.Y,
                 //    Fill = Brushes.Black,
-                //    Height = 6,
-                //    Width = 6,
+                //    StrokeThickness = 1,
                 //};
-                //Canvas.SetLeft(ellipse1, px2 + cx + 3);
-                //Canvas.SetTop(ellipse1, py2 + cy + 3);
+
+                Ellipse ellipse = new Ellipse()
+                {
+                    Fill = Brushes.White,
+                    Height = 6,
+                    Width = 6,
+                };
+                Canvas.SetLeft(ellipse, doublePendulumModel.previousX2 + CenterPoint.X + ellipse.Width / 2);
+                Canvas.SetTop(ellipse, doublePendulumModel.previousY2 + CenterPoint.Y + ellipse.Height / 2);
 
                 (Application.Current.Windows[0] as MainWindow).doublePendulumView2.canvas.Children.Add(ellipse);
             }

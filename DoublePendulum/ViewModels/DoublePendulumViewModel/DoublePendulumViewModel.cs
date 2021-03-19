@@ -1,10 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Timers;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
-using System.Windows.Threading;
 
 namespace DoublePendulum
 {
@@ -94,38 +93,55 @@ namespace DoublePendulum
         #endregion
 
         private DoublePendulumModel doublePendulumModel;
+        private BackgroundWorker backgroundWorker;
 
         public DoublePendulumViewModel()
         {
+            backgroundWorker = new BackgroundWorker();
             doublePendulumModel = new DoublePendulumModel();
+            backgroundWorker.DoWork += new DoWorkEventHandler(BackgroundWorker_DoWork);
+            backgroundWorker.RunWorkerCompleted += BackgroundWorker_Completed;
+
+            backgroundWorker.RunWorkerAsync();
+        }
+
+        private void BackgroundWorker_Completed(object sender, RunWorkerCompletedEventArgs e)
+        {
+            MessageBox.Show("End");
+        }
+
+        private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
             CreateTimer();
         }
 
         private void HandleTick(object sender, EventArgs e)
         {
-            Point firstCirclePoint = doublePendulumModel.GetFirstPoint();
-            Point secondCirclePoint = doublePendulumModel.GetSecondPoint();
-            secondCirclePoint.X += firstCirclePoint.X;
-            secondCirclePoint.Y += firstCirclePoint.Y;
+            Application.Current.Dispatcher.Invoke(new Action(() => { 
+                Point firstCirclePoint = doublePendulumModel.GetFirstPoint();
+                Point secondCirclePoint = doublePendulumModel.GetSecondPoint();
+                secondCirclePoint.X += firstCirclePoint.X;
+                secondCirclePoint.Y += firstCirclePoint.Y;
 
-            doublePendulumModel.Calculate2();
+                doublePendulumModel.Calculate2();
 
-            EndFirstArmPoint = new Point(firstCirclePoint.X + CenterPoint.X, firstCirclePoint.Y + CenterPoint.Y);
+                EndFirstArmPoint = new Point(firstCirclePoint.X + CenterPoint.X, firstCirclePoint.Y + CenterPoint.Y);
 
-            FirstCirclePoint = new Point(firstCirclePoint.X + CenterPoint.X, firstCirclePoint.Y + CenterPoint.Y);
-            FirstCircleRadius = new Point(doublePendulumModel.M1, doublePendulumModel.M1);
+                FirstCirclePoint = new Point(firstCirclePoint.X + CenterPoint.X, firstCirclePoint.Y + CenterPoint.Y);
+                FirstCircleRadius = new Point(doublePendulumModel.M1, doublePendulumModel.M1);
 
-            SecondArmPoint = new Point(firstCirclePoint.X + CenterPoint.X, firstCirclePoint.Y + CenterPoint.Y);
-            SecondArmEndPoint = new Point(secondCirclePoint.X + CenterPoint.X, secondCirclePoint.Y + CenterPoint.Y);
+                SecondArmPoint = new Point(firstCirclePoint.X + CenterPoint.X, firstCirclePoint.Y + CenterPoint.Y);
+                SecondArmEndPoint = new Point(secondCirclePoint.X + CenterPoint.X, secondCirclePoint.Y + CenterPoint.Y);
 
-            SecondCirclePoint = new Point(secondCirclePoint.X + CenterPoint.X, secondCirclePoint.Y + CenterPoint.Y);
-            SecondCircleRadius = new Point(doublePendulumModel.M2, doublePendulumModel.M2);
+                SecondCirclePoint = new Point(secondCirclePoint.X + CenterPoint.X, secondCirclePoint.Y + CenterPoint.Y);
+                SecondCircleRadius = new Point(doublePendulumModel.M2, doublePendulumModel.M2);
 
-            // friction
-            //a1_v *= 0.99;
-            //a2_v *= 0.99;
+                // friction
+                //a1_v *= 0.99;
+                //a2_v *= 0.99;
 
-            DrawOldPosition(secondCirclePoint);
+                DrawOldPosition(secondCirclePoint);
+            }));
         }
 
         private void DrawOldPosition(Point secondCirclePoint)
@@ -160,10 +176,10 @@ namespace DoublePendulum
         #region Create Timer
         private void CreateTimer()
         {
-            DispatcherTimer dispatcherTimer = new DispatcherTimer();
-            dispatcherTimer.Tick += new EventHandler(HandleTick);
-            dispatcherTimer.Interval = new TimeSpan(0, 0, 0, 0, 10);
-            dispatcherTimer.Start();
+            System.Timers.Timer aTimer = new System.Timers.Timer();
+            aTimer.Elapsed += new ElapsedEventHandler(HandleTick);
+            aTimer.Interval = 5;
+            aTimer.Enabled = true;
         }
         #endregion
 

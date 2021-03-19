@@ -92,8 +92,8 @@ namespace DoublePendulum
 
         #endregion
 
-        private DoublePendulumModel doublePendulumModel;
-        private BackgroundWorker backgroundWorker;
+        private readonly DoublePendulumModel doublePendulumModel;
+        private readonly BackgroundWorker backgroundWorker;
 
         public DoublePendulumViewModel()
         {
@@ -108,6 +108,16 @@ namespace DoublePendulum
         {
             CreateTimer();
         }
+
+        #region Create Timer
+        private void CreateTimer()
+        {
+            Timer aTimer = new Timer();
+            aTimer.Elapsed += new ElapsedEventHandler(HandleTick);
+            aTimer.Interval = 5;
+            aTimer.Enabled = true;
+        }
+        #endregion
 
         private void HandleTick(object sender, EventArgs e)
         {
@@ -167,16 +177,6 @@ namespace DoublePendulum
             }
             doublePendulumModel.StoreCurrentPoint(secondCirclePoint.X, secondCirclePoint.Y);
         }
-
-        #region Create Timer
-        private void CreateTimer()
-        {
-            Timer aTimer = new Timer();
-            aTimer.Elapsed += new ElapsedEventHandler(HandleTick);
-            aTimer.Interval = 5;
-            aTimer.Enabled = true;
-        }
-        #endregion
 
         #region Property Changed Event Handler
         public event PropertyChangedEventHandler PropertyChanged;

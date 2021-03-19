@@ -99,15 +99,9 @@ namespace DoublePendulum
         {
             backgroundWorker = new BackgroundWorker();
             doublePendulumModel = new DoublePendulumModel();
+
             backgroundWorker.DoWork += new DoWorkEventHandler(BackgroundWorker_DoWork);
-            backgroundWorker.RunWorkerCompleted += BackgroundWorker_Completed;
-
             backgroundWorker.RunWorkerAsync();
-        }
-
-        private void BackgroundWorker_Completed(object sender, RunWorkerCompletedEventArgs e)
-        {
-            MessageBox.Show("End");
         }
 
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -117,7 +111,8 @@ namespace DoublePendulum
 
         private void HandleTick(object sender, EventArgs e)
         {
-            Application.Current.Dispatcher.Invoke(new Action(() => { 
+            Application.Current.Dispatcher.Invoke(new Action(() => {
+
                 Point firstCirclePoint = doublePendulumModel.GetFirstPoint();
                 Point secondCirclePoint = doublePendulumModel.GetSecondPoint();
                 secondCirclePoint.X += firstCirclePoint.X;
@@ -176,7 +171,7 @@ namespace DoublePendulum
         #region Create Timer
         private void CreateTimer()
         {
-            System.Timers.Timer aTimer = new System.Timers.Timer();
+            Timer aTimer = new Timer();
             aTimer.Elapsed += new ElapsedEventHandler(HandleTick);
             aTimer.Interval = 5;
             aTimer.Enabled = true;

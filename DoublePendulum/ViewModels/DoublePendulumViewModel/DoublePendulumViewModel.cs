@@ -149,7 +149,7 @@ namespace DoublePendulum
             }));
         }
 
-        private static Random random = new Random();
+        private static readonly Random random = new Random();
 
         private void DrawOldPosition(Point secondCirclePoint)
         {

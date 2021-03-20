@@ -22,7 +22,5 @@
         <local:TopBarView/>
 
         <local:DoublePendulumView Grid.Row="1" x:Name="doublePendulumView2"/>
-
-        <local:SettingsView Grid.Row="2" x:Name="settingsView"/>
     </Grid>
 </Window>

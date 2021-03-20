@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\TopBarView\TopBarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -72,6 +76,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\DoublePendulumModel\DoublePendulumModel.cs" />
+    <Compile Include="SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewModels\DoublePendulumViewModel\DoublePendulumViewModel.cs" />
     <Compile Include="Global\GlobalColors\GlobalColors.cs" />
     <Compile Include="Views\TopBarView\TopBarView.xaml.cs">
@@ -111,6 +118,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\SettingsView\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

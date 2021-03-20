@@ -149,19 +149,25 @@ namespace DoublePendulum
             }));
         }
 
+        private static Random random = new Random();
+
         private void DrawOldPosition(Point secondCirclePoint)
         {
+            
             if (doublePendulumModel.PreviousXNotNull())
             {
+
+                int red = random.Next(0, 255);
+                int blue = random.Next(0, 255);
+                int green = random.Next(0, 255);
                 Line ellipse = new Line()
                 {
-                    Stroke = Brushes.White,
+                    Stroke = new SolidColorBrush(Color.FromRgb((byte)red, (byte)green, (byte)blue)),
                     X1 = doublePendulumModel.previousX2 + CenterPoint.X,
                     Y1 = doublePendulumModel.previousY2 + CenterPoint.Y,
                     X2 = secondCirclePoint.X + CenterPoint.X,
                     Y2 = secondCirclePoint.Y + CenterPoint.Y,
-                    Fill = Brushes.Black,
-                    StrokeThickness = 1,
+                StrokeThickness = 1,
                 };
 
                 //Ellipse ellipse = new Ellipse()

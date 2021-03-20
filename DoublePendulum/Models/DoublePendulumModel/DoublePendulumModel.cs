@@ -20,7 +20,7 @@ namespace DoublePendulum
 
         public DoublePendulumModel()
         {
-            m1 = 10;
+            m1 = 20;
             m2 = 10;
             r1 = 200;
             r2 = 200;

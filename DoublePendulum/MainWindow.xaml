@@ -16,10 +16,12 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <local:TopBarView/>
 
         <local:DoublePendulumView Grid.Row="1" x:Name="doublePendulumView2"/>
+        
     </Grid>
 </Window>

@@ -52,11 +52,13 @@
             </Path>
         </Canvas>
 
-        <StackPanel Grid.Row="1">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
             <TextBlock Foreground="Orange" Width="100" FontSize="20">
                 <Run Text="Test: "/>
-                <Run Text="{Binding Path=SecondArmPoint.X}"/>
+                <Run Text="{Binding Value, ElementName=height}"/>
             </TextBlock>
+
+            <Slider Name="height" Value="100" Minimum="1" Maximum="500" Width="200"/>
         </StackPanel>
     </Grid>
 </UserControl>

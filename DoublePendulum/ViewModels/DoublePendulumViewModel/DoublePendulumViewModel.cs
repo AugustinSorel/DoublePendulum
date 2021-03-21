@@ -92,6 +92,17 @@ namespace DoublePendulum
 
         #endregion
 
+
+        public double Test
+        {
+            get { return doublePendulumModel.M2; }
+            set 
+            { 
+                doublePendulumModel.M2 = value;
+                NotifyPropertyChanged("Test"); 
+            }
+        }
+
         private readonly DoublePendulumModel doublePendulumModel;
         private readonly BackgroundWorker backgroundWorker;
 

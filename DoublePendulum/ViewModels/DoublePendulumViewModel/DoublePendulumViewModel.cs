@@ -73,7 +73,7 @@ namespace DoublePendulum
         public Point FirstCircleRadius
         {
             get { return (Point)GetValue(FirstCirlceRadiusProperty); }
-            set { SetValue(FirstCirlceRadiusProperty, value); }
+            set { SetValue(FirstCirlceRadiusProperty, value); NotifyPropertyChanged("FirstCircleRadius"); }
         }
 
         // Using a DependencyProperty as the backing store for FirstCirlceRadius.  This enables animation, styling, binding, etc...
@@ -93,15 +93,26 @@ namespace DoublePendulum
         #endregion
 
 
-        public double Test
+        public double WeightCircle2
         {
             get { return doublePendulumModel.M2; }
             set 
             { 
                 doublePendulumModel.M2 = value;
-                NotifyPropertyChanged("Test"); 
+                NotifyPropertyChanged("WeightCirlce2"); 
             }
         }
+
+        public double WeightCircle1
+        {
+            get { return doublePendulumModel.M1; }
+            set
+            {
+                doublePendulumModel.M1 = value;
+                NotifyPropertyChanged("WeightCirlce1");
+            }
+        }
+
 
         private readonly DoublePendulumModel doublePendulumModel;
         private readonly BackgroundWorker backgroundWorker;

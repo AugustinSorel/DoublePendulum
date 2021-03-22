@@ -53,12 +53,20 @@
         </Canvas>
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
-            <TextBlock Foreground="Orange" Width="100" FontSize="20">
-                <Run Text="Test: "/>
-                <Run Text="{Binding Path=Test, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Foreground="Orange" FontSize="20">
+                <Run Text="Weight Circle1: "/>
+                <Run Text="{Binding Path=WeightCircle1, UpdateSourceTrigger=PropertyChanged}"/>
             </TextBlock>
 
-            <Slider Name="height" Value="{Binding Path=Test, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Minimum="0" Maximum="50" Width="200" />
+            <Slider Name="sliderWeightCircle1" Value="{Binding Path=WeightCircle1, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Minimum="0" Maximum="50" Width="200" IsSnapToTickEnabled="True" TickFrequency="1"/>
+
+            <TextBlock Foreground="Orange" FontSize="20">
+                <Run Text="Weihgt Circle2: "/>
+                <Run Text="{Binding Path=WeightCircle2, UpdateSourceTrigger=PropertyChanged}"/>
+            </TextBlock>
+
+            <Slider Name="sliderWeightCircle2" Value="{Binding Path=WeightCircle2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Minimum="0" Maximum="50" Width="200" IsSnapToTickEnabled="True" TickFrequency="1"/>
+
         </StackPanel>
     </Grid>
 </UserControl>

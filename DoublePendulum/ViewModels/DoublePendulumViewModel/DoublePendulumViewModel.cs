@@ -99,7 +99,7 @@ namespace DoublePendulum
             set 
             { 
                 doublePendulumModel.M2 = value;
-                NotifyPropertyChanged("WeightCirlce2"); 
+                NotifyPropertyChanged("WeightCircle2"); 
             }
         }
 
@@ -109,7 +109,7 @@ namespace DoublePendulum
             set
             {
                 doublePendulumModel.M1 = value;
-                NotifyPropertyChanged("WeightCirlce1");
+                NotifyPropertyChanged("WeightCircle1");
             }
         }
 

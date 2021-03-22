@@ -113,6 +113,25 @@ namespace DoublePendulum
             }
         }
 
+        public double LengthArm1
+        {
+            get { return doublePendulumModel.R1; }
+            set
+            {
+                doublePendulumModel.R1 = value;
+                NotifyPropertyChanged("LengthArm1");
+            }
+        }
+
+        public double LengthArm2
+        {
+            get { return doublePendulumModel.R2; }
+            set
+            {
+                doublePendulumModel.R2 = value;
+                NotifyPropertyChanged("LengthArm2");
+            }
+        }
 
         private readonly DoublePendulumModel doublePendulumModel;
         private readonly BackgroundWorker backgroundWorker;

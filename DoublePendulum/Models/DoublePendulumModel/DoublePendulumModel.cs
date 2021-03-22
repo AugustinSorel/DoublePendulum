@@ -7,8 +7,8 @@ namespace DoublePendulum
     {
         private double m1;
         private double m2;
-        private readonly double r1;
-        private readonly double r2;
+        private double r1;
+        private double r2;
         private double a1;
         private double a2;
         private double a1_v;
@@ -42,6 +42,18 @@ namespace DoublePendulum
         {
             get { return m2; }
             set { m2 = value; }
+        }
+
+        public double R1
+        {
+            get { return r1; }
+            set { r1 = value; }
+        }
+
+        public double R2
+        {
+            get { return r2; }
+            set { r2 = value; }
         }
 
         internal bool PreviousXNotNull()

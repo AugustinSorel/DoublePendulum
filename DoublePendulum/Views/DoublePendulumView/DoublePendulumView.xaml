@@ -8,6 +8,8 @@
              mc:Ignorable="d"
              Background="{Binding Source={x:Static local:GlobalColors.BackgroundColor}}"
              d:DesignHeight="450" d:DesignWidth="800">
+    
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

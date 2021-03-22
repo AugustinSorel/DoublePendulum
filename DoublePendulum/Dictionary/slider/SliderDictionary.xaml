@@ -30,7 +30,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RepeatButton">
-                    <Border SnapsToDevicePixels="True" Background="Green" Height="5"/>
+                    <Border SnapsToDevicePixels="True" Background="White" Height="5"/><!---->
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -43,7 +43,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Thumb">
                     <!--Add name to ellipse to use in  controltemplate triggers-->
-                    <Ellipse x:Name="Ellipse" Height="10" Width="10" Fill="Red"></Ellipse>
+                    <Ellipse x:Name="Ellipse" Height="10" Width="10" Fill="White"></Ellipse><!---->
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter TargetName="Ellipse" Property="Height" Value="13"></Setter>

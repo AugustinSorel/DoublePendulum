@@ -18,7 +18,7 @@ namespace DoublePendulum
 
         // Using a DependencyProperty as the backing store for vector.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CenterPointProperty =
-            DependencyProperty.Register("CenterPoint", typeof(Point), typeof(DoublePendulumView), new PropertyMetadata(new Point(400, 200)));
+            DependencyProperty.Register("CenterPoint", typeof(Point), typeof(DoublePendulumView), new PropertyMetadata(new Point(SystemParameters.WorkArea.Width / 2, SystemParameters.WorkArea.Height / 4)));
 
         public Point EndFirstArmPoint
         {
@@ -97,9 +97,12 @@ namespace DoublePendulum
         {
             get { return doublePendulumModel.M2; }
             set 
-            { 
-                doublePendulumModel.M2 = value;
-                NotifyPropertyChanged("WeightCircle2"); 
+            {
+                if (value != doublePendulumModel.M2 && value > 0 && value < 51)
+                {
+                    doublePendulumModel.M2 = value;
+                    NotifyPropertyChanged("WeightCircle2");
+                }
             }
         }
 
@@ -108,8 +111,11 @@ namespace DoublePendulum
             get { return doublePendulumModel.M1; }
             set
             {
-                doublePendulumModel.M1 = value;
-                NotifyPropertyChanged("WeightCircle1");
+                if (value != doublePendulumModel.M1 && value > 0 && value < 51)
+                {
+                    doublePendulumModel.M1 = value;
+                    NotifyPropertyChanged("WeightCircle1");
+                }
             }
         }
 
@@ -118,8 +124,11 @@ namespace DoublePendulum
             get { return doublePendulumModel.R1; }
             set
             {
-                doublePendulumModel.R1 = value;
-                NotifyPropertyChanged("LengthArm1");
+                if (value != doublePendulumModel.R1 && value > 9 && value < 201)
+                {
+                    doublePendulumModel.R1 = value;
+                    NotifyPropertyChanged("LengthArm1");
+                }
             }
         }
 
@@ -128,8 +137,11 @@ namespace DoublePendulum
             get { return doublePendulumModel.R2; }
             set
             {
-                doublePendulumModel.R2 = value;
-                NotifyPropertyChanged("LengthArm2");
+                if (value != doublePendulumModel.R2 && value > 9 && value < 201)
+                {
+                    doublePendulumModel.R2 = value;
+                    NotifyPropertyChanged("LengthArm2");
+                }
             }
         }
 

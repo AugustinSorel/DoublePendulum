@@ -116,7 +116,7 @@
                 hello
             </Button>
 
-            <Button>
+            <Button Style="{DynamicResource DefaultButtonStyle}">
                 Hello
             </Button>
             
@@ -127,7 +127,7 @@
                 Hello
             </CheckBox>
 
-            <Button>
+            <Button Style="{DynamicResource DefaultButtonStyle}">
                 Hello
             </Button>
 

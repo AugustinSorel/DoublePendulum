@@ -201,9 +201,11 @@ namespace DoublePendulum
                 int red = random.Next(0, 255);
                 int blue = random.Next(0, 255);
                 int green = random.Next(0, 255);
+
                 Line ellipse = new Line()
                 {
-                    Stroke = new SolidColorBrush(Color.FromRgb((byte)red, (byte)green, (byte)blue)),
+                    //Stroke = new SolidColorBrush(Color.FromRgb((byte)red, (byte)green, (byte)blue)),
+                    Stroke = Brushes.White,
                     X1 = doublePendulumModel.previousX2 + CenterPoint.X,
                     Y1 = doublePendulumModel.previousY2 + CenterPoint.Y,
                     X2 = secondCirclePoint.X + CenterPoint.X,

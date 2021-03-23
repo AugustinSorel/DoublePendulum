@@ -13,6 +13,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/DoublePendulum;component/Dictionary/slider/SliderDictionary.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/DoublePendulum;component/Dictionary/Button/ButtonDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>

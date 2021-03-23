@@ -18,6 +18,12 @@
     </UserControl.Resources>
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
@@ -62,7 +68,7 @@
             </Path>
         </Canvas>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 10, 0, 10">
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 10, 0, 10">
             <TextBlock Margin="10, 0, 10, 0" Foreground="{Binding Source={x:Static local:GlobalColors.ForegroundColor}}" FontSize="20">
                 <Run Text="Weight Circle1: "/>
                 <Run Text="{Binding Path=WeightCircle1, UpdateSourceTrigger=PropertyChanged}"/>
@@ -83,7 +89,7 @@
 
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 10, 0, 10">
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 10, 0, 10">
             <TextBlock Margin="10, 0, 10, 0" Foreground="{Binding Source={x:Static local:GlobalColors.ForegroundColor}}" FontSize="20">
                 <Run Text="Length arm1: "/>
                 <Run Text="{Binding Path=LengthArm1, UpdateSourceTrigger=PropertyChanged}"/>
@@ -101,6 +107,28 @@
             <Slider Margin="10, 0, 10, 0" Name="sliderLengthArm2" Style="{StaticResource CustomSlider}"  
                     Value="{Binding Path=LengthArm2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                     Minimum="10" Maximum="400" IsSnapToTickEnabled="True" TickFrequency="1"/>
+
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button>
+                hello
+            </Button>
+
+            <Button>
+                Hello
+            </Button>
+            
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <CheckBox Foreground="White">
+                Hello
+            </CheckBox>
+
+            <Button>
+                Hello
+            </Button>
 
         </StackPanel>
     </Grid>

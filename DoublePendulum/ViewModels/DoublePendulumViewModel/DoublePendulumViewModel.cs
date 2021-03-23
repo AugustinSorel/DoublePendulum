@@ -124,7 +124,7 @@ namespace DoublePendulum
             get { return doublePendulumModel.R1; }
             set
             {
-                if (value != doublePendulumModel.R1 && value > 9 && value < 201)
+                if (value != doublePendulumModel.R1 && value > 9 && value < 401)
                 {
                     doublePendulumModel.R1 = value;
                     NotifyPropertyChanged("LengthArm1");
@@ -137,7 +137,7 @@ namespace DoublePendulum
             get { return doublePendulumModel.R2; }
             set
             {
-                if (value != doublePendulumModel.R2 && value > 9 && value < 201)
+                if (value != doublePendulumModel.R2 && value > 9 && value < 401)
                 {
                     doublePendulumModel.R2 = value;
                     NotifyPropertyChanged("LengthArm2");

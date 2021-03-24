@@ -112,14 +112,18 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
+
             <Button Style="{DynamicResource DefaultButtonStyle}">
-                hello
+                <Image Source="/Images/Pause_16x.png"/>
             </Button>
 
             <Button Style="{DynamicResource DefaultButtonStyle}">
-                Hello
+                <Image Source="/Images/Stop_16x.png"/>
             </Button>
-            
+
+            <Button Style="{DynamicResource DefaultButtonStyle}">
+                <Image Source="/Images/StartWithoutDebug_16x.png"/>
+            </Button>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">

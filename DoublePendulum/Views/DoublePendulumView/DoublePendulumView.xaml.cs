@@ -12,5 +12,20 @@ namespace DoublePendulum
             InitializeComponent();
             DataContext = new DoublePendulumViewModel();
         }
+
+        private void ButtonPause_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonStop_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonStart_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
     }
 }

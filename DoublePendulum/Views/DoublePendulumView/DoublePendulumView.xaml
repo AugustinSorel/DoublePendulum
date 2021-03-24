@@ -113,17 +113,18 @@
 
         <StackPanel Grid.Row="1" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
 
-            <Button Style="{DynamicResource DefaultButtonStyle}">
-                <Image Source="/Images/Pause_16x.png"/>
+            <Button Name="buttonPause" Style="{DynamicResource DefaultButtonStyle}" Click="ButtonPause_Click">
+                <Image SnapsToDevicePixels="True" Source="/Images/Pause_16x.png"/>
             </Button>
 
-            <Button Style="{DynamicResource DefaultButtonStyle}">
+            <Button Name="buttonStop" Style="{DynamicResource DefaultButtonStyle}" Click="ButtonStop_Click">
                 <Image Source="/Images/Stop_16x.png"/>
             </Button>
 
-            <Button Style="{DynamicResource DefaultButtonStyle}">
+            <Button Name="buttonStart" Style="{DynamicResource DefaultButtonStyle}" Click="ButtonStart_Click">
                 <Image Source="/Images/StartWithoutDebug_16x.png"/>
             </Button>
+            
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">

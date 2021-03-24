@@ -92,7 +92,7 @@ namespace DoublePendulum
 
         #endregion
 
-
+        #region Property
         public double WeightCircle2
         {
             get { return doublePendulumModel.M2; }
@@ -144,36 +144,77 @@ namespace DoublePendulum
                 }
             }
         }
+        #endregion
 
         private readonly DoublePendulumModel doublePendulumModel;
         private readonly BackgroundWorker backgroundWorker;
+        private readonly Random random = new Random();
+        private bool pause;
+        private DoWorkEventArgs doWorkEventArgs;
 
         public DoublePendulumViewModel()
         {
             backgroundWorker = new BackgroundWorker();
             doublePendulumModel = new DoublePendulumModel();
 
+            pause = false;
+
             backgroundWorker.DoWork += new DoWorkEventHandler(BackgroundWorker_DoWork);
+            backgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(BackgroundWorker_RunWorkerCompleted);
+            backgroundWorker.WorkerSupportsCancellation = true;
             backgroundWorker.RunWorkerAsync();
+        }
+
+        private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            MessageBox.Show("END");
         }
 
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
+            doWorkEventArgs = e;
             CreateTimer();
         }
 
+        internal void Stop()
+        {
+            aTimer.Stop();
+
+        }
+
+        internal void Start()
+        {
+            aTimer.Start();
+        }
+
+        internal void Pause()
+        {
+            (aTimer.Enabled) ^= true;
+        }
+
+        private Timer aTimer;
         #region Create Timer
         private void CreateTimer()
         {
-            Timer aTimer = new Timer();
+            aTimer = new Timer();
             aTimer.Elapsed += new ElapsedEventHandler(HandleTick);
             aTimer.Interval = 5;
             aTimer.Enabled = true;
         }
         #endregion
 
+        #region HandleTick
         private void HandleTick(object sender, EventArgs e)
         {
+            while (pause)
+                System.Threading.Thread.Sleep(100);
+
+            if (backgroundWorker.CancellationPending)
+            {
+                aTimer.Stop();
+                //return;
+            }
+
             Application.Current.Dispatcher.Invoke(new Action(() => {
 
                 Point firstCirclePoint = doublePendulumModel.GetFirstPoint();
@@ -201,9 +242,9 @@ namespace DoublePendulum
                 DrawOldPosition(secondCirclePoint);
             }));
         }
+        #endregion
 
-        private static readonly Random random = new Random();
-
+        #region DrawOlPosition
         private void DrawOldPosition(Point secondCirclePoint)
         {
             
@@ -238,6 +279,7 @@ namespace DoublePendulum
             }
             doublePendulumModel.StoreCurrentPoint(secondCirclePoint.X, secondCirclePoint.Y);
         }
+        #endregion
 
         #region Property Changed Event Handler
         public event PropertyChangedEventHandler PropertyChanged;

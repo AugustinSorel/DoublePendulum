@@ -149,15 +149,11 @@ namespace DoublePendulum
         private readonly DoublePendulumModel doublePendulumModel;
         private readonly BackgroundWorker backgroundWorker;
         private readonly Random random = new Random();
-        private bool pause;
-        private DoWorkEventArgs doWorkEventArgs;
 
         public DoublePendulumViewModel()
         {
             backgroundWorker = new BackgroundWorker();
             doublePendulumModel = new DoublePendulumModel();
-
-            pause = false;
 
             backgroundWorker.DoWork += new DoWorkEventHandler(BackgroundWorker_DoWork);
             backgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(BackgroundWorker_RunWorkerCompleted);
@@ -172,14 +168,13 @@ namespace DoublePendulum
 
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            doWorkEventArgs = e;
             CreateTimer();
         }
 
         internal void Stop()
         {
-            aTimer.Stop();
-
+            if (aTimer.Enabled)
+                aTimer.Stop();
         }
 
         internal void Start()
@@ -206,15 +201,6 @@ namespace DoublePendulum
         #region HandleTick
         private void HandleTick(object sender, EventArgs e)
         {
-            while (pause)
-                System.Threading.Thread.Sleep(100);
-
-            if (backgroundWorker.CancellationPending)
-            {
-                aTimer.Stop();
-                //return;
-            }
-
             Application.Current.Dispatcher.Invoke(new Action(() => {
 
                 Point firstCirclePoint = doublePendulumModel.GetFirstPoint();

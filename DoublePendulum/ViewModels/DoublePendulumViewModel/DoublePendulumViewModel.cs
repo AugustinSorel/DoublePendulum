@@ -156,14 +156,8 @@ namespace DoublePendulum
             doublePendulumModel = new DoublePendulumModel();
 
             backgroundWorker.DoWork += new DoWorkEventHandler(BackgroundWorker_DoWork);
-            backgroundWorker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(BackgroundWorker_RunWorkerCompleted);
             backgroundWorker.WorkerSupportsCancellation = true;
             backgroundWorker.RunWorkerAsync();
-        }
-
-        private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            MessageBox.Show("END");
         }
 
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -201,16 +195,18 @@ namespace DoublePendulum
         #region HandleTick
         private void HandleTick(object sender, EventArgs e)
         {
+
+            Point firstCirclePoint = doublePendulumModel.GetFirstPoint();
+            Point secondCirclePoint = doublePendulumModel.GetSecondPoint();
+            secondCirclePoint.X += firstCirclePoint.X;
+            secondCirclePoint.Y += firstCirclePoint.Y;
+
+            doublePendulumModel.Calculate2();
+
             Application.Current.Dispatcher.Invoke(new Action(() => {
 
-                Point firstCirclePoint = doublePendulumModel.GetFirstPoint();
-                Point secondCirclePoint = doublePendulumModel.GetSecondPoint();
-                secondCirclePoint.X += firstCirclePoint.X;
-                secondCirclePoint.Y += firstCirclePoint.Y;
-
-                doublePendulumModel.Calculate2();
-
                 EndFirstArmPoint = new Point(firstCirclePoint.X + CenterPoint.X, firstCirclePoint.Y + CenterPoint.Y);
+
 
                 FirstCirclePoint = new Point(firstCirclePoint.X + CenterPoint.X, firstCirclePoint.Y + CenterPoint.Y);
                 FirstCircleRadius = new Point(doublePendulumModel.M1, doublePendulumModel.M1);

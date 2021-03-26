@@ -13,23 +13,14 @@ namespace DoublePendulum
         private double a2;
         private double a1_v;
         private double a2_v;
-        private readonly double g;
+        private double g;
 
         public double previousX2;
         public double previousY2;
 
         public DoublePendulumModel()
         {
-            m1 = 10;
-            m2 = 10;
-            r1 = 200;
-            r2 = 200;
-            a1 = Math.PI / 2;
-            a2 = Math.PI;
-            a1_v = 0;
-            previousX2 = -1;
-            previousY2 = -1;
-            g = 1;
+            ResetValue();
         }
 
         public double M1
@@ -54,6 +45,20 @@ namespace DoublePendulum
         {
             get { return r2; }
             set { r2 = value; }
+        }
+
+        internal void ResetValue()
+        {
+            m1 = 10;
+            m2 = 10;
+            r1 = 200;
+            r2 = 200;
+            a1 = Math.PI / 2;
+            a2 = Math.PI;
+            a1_v = 0;
+            previousX2 = -1;
+            previousY2 = -1;
+            g = 1;
         }
 
         internal bool PreviousXNotNull()

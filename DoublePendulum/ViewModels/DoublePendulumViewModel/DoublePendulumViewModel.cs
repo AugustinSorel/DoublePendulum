@@ -168,12 +168,24 @@ namespace DoublePendulum
         internal void Stop()
         {
             if (aTimer.Enabled)
+            {
                 aTimer.Stop();
+                CenterPoint = new Point(SystemParameters.WorkArea.Width / 2, SystemParameters.WorkArea.Height / 4);
+                EndFirstArmPoint = new Point(0, 0);
+                FirstCirclePoint = new Point(0, 0);
+                SecondCirclePoint = new Point(0, 0);
+                SecondArmPoint = new Point(0, 0);
+                SecondArmEndPoint = new Point(0, 0);
+                FirstCircleRadius = new Point(10, 10);
+                SecondCircleRadius = new Point(10, 10);
+
+                doublePendulumModel.ResetValue();
+            }
         }
 
         internal void Start()
         {
-            aTimer.Start();
+            (aTimer.Enabled) = true;
         }
 
         internal void Pause()

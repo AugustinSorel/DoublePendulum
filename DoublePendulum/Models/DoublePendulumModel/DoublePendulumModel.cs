@@ -56,6 +56,7 @@ namespace DoublePendulum
             a1 = Math.PI / 2;
             a2 = Math.PI;
             a1_v = 0;
+            a2_v = 0;
             previousX2 = -1;
             previousY2 = -1;
             g = 1;

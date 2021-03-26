@@ -171,14 +171,6 @@ namespace DoublePendulum
         {
             if (aTimer.Enabled)
             {
-                List<Line> listOfLineToRemove = new List<Line>();
-                foreach (var item in (Application.Current.Windows[0] as MainWindow).doublePendulumView2.canvas.Children)
-                    if (item.GetType() == typeof(Line) && (item as Line).Name == string.Empty)
-                            listOfLineToRemove.Add(item as Line);
-
-                foreach (var item in listOfLineToRemove)
-                    (Application.Current.Windows[0] as MainWindow).doublePendulumView2.canvas.Children.Remove(item);
-
                 aTimer.Stop();
                 CenterPoint = new Point(SystemParameters.WorkArea.Width / 2, SystemParameters.WorkArea.Height / 4);
                 EndFirstArmPoint = new Point(0, 0);
@@ -188,6 +180,14 @@ namespace DoublePendulum
                 SecondArmEndPoint = new Point(0, 0);
                 FirstCircleRadius = new Point(10, 10);
                 SecondCircleRadius = new Point(10, 10);
+
+                List<Line> listOfLineToRemove = new List<Line>();
+                foreach (var item in (Application.Current.Windows[0] as MainWindow).doublePendulumView2.canvas.Children)
+                    if (item.GetType() == typeof(Line) && (item as Line).Name == string.Empty)
+                        listOfLineToRemove.Add(item as Line);
+
+                foreach (var item in listOfLineToRemove)
+                    (Application.Current.Windows[0] as MainWindow).doublePendulumView2.canvas.Children.Remove(item);
 
                 doublePendulumModel.ResetValue();
             }

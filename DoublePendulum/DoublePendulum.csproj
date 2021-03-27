@@ -67,10 +67,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Resource Include="Images\Pause_16x.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Resource>
     <Page Include="Views\TopBarView\TopBarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -131,9 +127,7 @@
     <Resource Include="Images\StartWithoutDebug_16x.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\CleanData_16x.png" />
     <Resource Include="Images\CleanData_inverse_16x.png" />
-    <Content Include="Images\Pause_16x.svg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Stop_16x.png" />

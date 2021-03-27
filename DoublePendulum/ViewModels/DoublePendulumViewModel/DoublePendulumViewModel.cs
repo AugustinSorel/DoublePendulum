@@ -150,7 +150,6 @@ namespace DoublePendulum
         private readonly DoublePendulumModel doublePendulumModel;
         private readonly BackgroundWorker backgroundWorker;
         private readonly Random random = new Random();
-        private bool trace;
         private Timer aTimer;
 
         public DoublePendulumViewModel()
@@ -174,10 +173,6 @@ namespace DoublePendulum
             {
                 aTimer.Stop();
                 CenterPoint = new Point(SystemParameters.WorkArea.Width / 2, SystemParameters.WorkArea.Height / 4);
-
-
-
-
                 EndFirstArmPoint = new Point(0, 0);
                 FirstCirclePoint = new Point(0, 0);
                 SecondCirclePoint = new Point(0, 0);

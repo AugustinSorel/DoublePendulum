@@ -131,6 +131,7 @@
     <Resource Include="Images\StartWithoutDebug_16x.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\CleanData_16x.png" />
     <Content Include="Images\Pause_16x.svg" />
   </ItemGroup>
   <ItemGroup>

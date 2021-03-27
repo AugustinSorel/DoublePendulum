@@ -120,7 +120,7 @@
             </Button>
 
             <Button Name="buttonStop" Style="{DynamicResource DefaultButtonStyle}" Click="ButtonStop_Click"
-                    ToolTip="Stop the pendulum">
+                    ToolTip="Reset the pendulum">
                 <Image Source="/Images/Stop_16x.png"/>
             </Button>
 

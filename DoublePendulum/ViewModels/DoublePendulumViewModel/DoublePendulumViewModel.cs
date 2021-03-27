@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 using System.Timers;
 using System.Windows;
 using System.Windows.Media;
@@ -151,6 +150,8 @@ namespace DoublePendulum
         private readonly DoublePendulumModel doublePendulumModel;
         private readonly BackgroundWorker backgroundWorker;
         private readonly Random random = new Random();
+        private bool trace;
+        private Timer aTimer;
 
         public DoublePendulumViewModel()
         {
@@ -173,6 +174,10 @@ namespace DoublePendulum
             {
                 aTimer.Stop();
                 CenterPoint = new Point(SystemParameters.WorkArea.Width / 2, SystemParameters.WorkArea.Height / 4);
+
+
+
+
                 EndFirstArmPoint = new Point(0, 0);
                 FirstCirclePoint = new Point(0, 0);
                 SecondCirclePoint = new Point(0, 0);
@@ -207,7 +212,6 @@ namespace DoublePendulum
             (aTimer.Enabled) ^= true;
         }
 
-        private Timer aTimer;
         #region Create Timer
         private void CreateTimer()
         {
@@ -256,7 +260,7 @@ namespace DoublePendulum
         private void DrawOldPosition(Point secondCirclePoint)
         {
             
-            if (doublePendulumModel.PreviousXNotNull())
+            if (doublePendulumModel.PreviousXNotNull() && (Application.Current.Windows[0] as MainWindow).doublePendulumView2.checkBoxTrace.IsChecked == true)
             {
 
                 int red = random.Next(0, 255);

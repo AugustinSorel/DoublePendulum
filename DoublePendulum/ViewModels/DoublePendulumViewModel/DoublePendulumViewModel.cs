@@ -180,6 +180,10 @@ namespace DoublePendulum
                 SecondArmEndPoint = new Point(0, 0);
                 FirstCircleRadius = new Point(10, 10);
                 SecondCircleRadius = new Point(10, 10);
+                LengthArm1 = 200;
+                LengthArm2 = 200;
+                WeightCircle1 = 10;
+                WeightCircle2 = 10;
 
                 List<Line> listOfLineToRemove = new List<Line>();
                 foreach (var item in (Application.Current.Windows[0] as MainWindow).doublePendulumView2.canvas.Children)

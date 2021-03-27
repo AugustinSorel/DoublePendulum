@@ -14,6 +14,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/DoublePendulum;component/Dictionary/slider/SliderDictionary.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/DoublePendulum;component/Dictionary/Button/ButtonDictionary.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/DoublePendulum;component/Dictionary/CheckBox/CheckBoxDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -128,8 +129,8 @@
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <CheckBox Foreground="White">
-                Hello
+            <CheckBox BorderThickness="2">
+                Trace
             </CheckBox>
 
             <Button Style="{DynamicResource DefaultButtonStyle}">

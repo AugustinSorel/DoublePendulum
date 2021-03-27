@@ -38,6 +38,7 @@
         <Setter Property="BorderBrush" Value="{StaticResource OptionMark.Static.Border}"/>
         <Setter Property="Foreground" Value="{Binding Source={x:Static local:GlobalColors.ForegroundColor}}"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Margin" Value="10"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CheckBox}">

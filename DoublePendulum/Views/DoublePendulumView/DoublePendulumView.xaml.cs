@@ -29,5 +29,10 @@ namespace DoublePendulum
         {
             doublePendulumViewModel.Start();
         }
+
+        private void buttonClean_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            doublePendulumViewModel.CleanData();
+        }
     }
 }

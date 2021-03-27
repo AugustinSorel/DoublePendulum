@@ -131,7 +131,7 @@
         <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
             <CheckBox Name="checkBoxTrace" VerticalAlignment="Center" Content="Trace" IsChecked="True"/>
 
-            <Button Name="buttonClean" Style="{DynamicResource DefaultButtonStyle}">
+            <Button Name="buttonClean" Style="{DynamicResource DefaultButtonStyle}" Click="buttonClean_Click">
                 <Image SnapsToDevicePixels="True" Source="/Images/CleanData_inverse_16x.png"/>
             </Button>
         </StackPanel>

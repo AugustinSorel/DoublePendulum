@@ -185,18 +185,24 @@ namespace DoublePendulum
                 WeightCircle1 = 10;
                 WeightCircle2 = 10;
 
-                List<Line> listOfLineToRemove = new List<Line>();
-                foreach (var item in (Application.Current.Windows[0] as MainWindow).doublePendulumView2.canvas.Children)
-                    if (item.GetType() == typeof(Line) && (item as Line).Name == string.Empty)
-                        listOfLineToRemove.Add(item as Line);
-
-                foreach (var item in listOfLineToRemove)
-                    (Application.Current.Windows[0] as MainWindow).doublePendulumView2.canvas.Children.Remove(item);
+                RemoveTraceLine();
 
                 doublePendulumModel.ResetValue();
             }
         }
 
+        private static void RemoveTraceLine()
+        {
+            List<Line> listOfLineToRemove = new List<Line>();
+            foreach (var item in (Application.Current.Windows[0] as MainWindow).doublePendulumView2.canvas.Children)
+                if (item.GetType() == typeof(Line) && (item as Line).Name == string.Empty)
+                    listOfLineToRemove.Add(item as Line);
+
+            foreach (var item in listOfLineToRemove)
+                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.canvas.Children.Remove(item);
+        }
+
+        #region Click Event
         internal void Start()
         {
             (aTimer.Enabled) = true;
@@ -206,6 +212,12 @@ namespace DoublePendulum
         {
             (aTimer.Enabled) ^= true;
         }
+
+        internal void CleanData()
+        {
+            RemoveTraceLine();
+        }
+        #endregion
 
         #region Create Timer
         private void CreateTimer()

@@ -132,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\CleanData_16x.png" />
+    <Resource Include="Images\CleanData_inverse_16x.png" />
     <Content Include="Images\Pause_16x.svg" />
   </ItemGroup>
   <ItemGroup>

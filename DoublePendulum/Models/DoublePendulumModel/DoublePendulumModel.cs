@@ -69,7 +69,8 @@ namespace DoublePendulum
             g = 1;
         }
 
-        #region Property Changed Event Handler
+        #region Property Changed Event Handler 
+        // remove this.
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propertyName)
         {

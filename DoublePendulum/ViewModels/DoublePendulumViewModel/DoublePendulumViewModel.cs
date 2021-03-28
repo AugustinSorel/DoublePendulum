@@ -150,7 +150,7 @@ namespace DoublePendulum
         {
             get { return doublePendulumModel; }
             set { doublePendulumModel = value; NotifyPropertyChanged("DoublePendulumModel"); }
-        }
+        } // cleaning to do 
 
         #endregion
 

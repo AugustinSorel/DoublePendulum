@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace DoublePendulum
 {
@@ -35,9 +36,12 @@ namespace DoublePendulum
             doublePendulumViewModel.CleanData();
         }
 
-        private void buttonFullScreen_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void ButtonFullScreen_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-
+            if ((Application.Current.Windows[0] as MainWindow).WindowState == WindowState.Maximized)
+                (Application.Current.Windows[0] as MainWindow).WindowState = WindowState.Normal;
+            else
+                (Application.Current.Windows[0] as MainWindow).WindowState = WindowState.Maximized;
         }
     }
 }

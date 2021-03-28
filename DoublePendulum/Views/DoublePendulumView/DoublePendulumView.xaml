@@ -143,5 +143,10 @@
                 <Image SnapsToDevicePixels="True" Source="/Images/AutosizeOptimize_16x.png"/>
             </Button>
         </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBlock Foreground="{Binding Source={x:Static local:GlobalColors.ForegroundColor}}" 
+                       Text="{Binding Path=AccelerationCircle1, UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
     </Grid>
 </UserControl>

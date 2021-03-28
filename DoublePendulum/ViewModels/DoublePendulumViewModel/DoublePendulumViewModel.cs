@@ -145,6 +145,11 @@ namespace DoublePendulum
                 }
             }
         }
+
+        public double AccelerationCircle1
+        {
+            get { return doublePendulumModel.A1; }
+        }
         #endregion
 
         private readonly DoublePendulumModel doublePendulumModel;

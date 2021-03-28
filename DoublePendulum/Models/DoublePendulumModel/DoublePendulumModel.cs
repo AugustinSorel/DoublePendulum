@@ -47,6 +47,11 @@ namespace DoublePendulum
             set { r2 = value; }
         }
 
+        public double A1
+        {
+            get { return a1; }
+        }
+
         internal void ResetValue()
         {
             m1 = 10;

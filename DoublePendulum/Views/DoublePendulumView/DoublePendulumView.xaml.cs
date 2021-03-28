@@ -34,5 +34,10 @@ namespace DoublePendulum
         {
             doublePendulumViewModel.CleanData();
         }
+
+        private void buttonFullScreen_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
     }
 }

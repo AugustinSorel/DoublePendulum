@@ -138,6 +138,10 @@
                     ToolTip="Clean the trace line">
                 <Image SnapsToDevicePixels="True" Source="/Images/CleanData_inverse_16x.png"/>
             </Button>
+            <Button Name="buttonFullScreen" Style="{DynamicResource DefaultButtonStyle}" Click="buttonFullScreen_Click"
+                    ToolTip="FUll screen">
+                <Image SnapsToDevicePixels="True" Source="/Images/AutosizeOptimize_16x.png"/>
+            </Button>
         </StackPanel>
     </Grid>
 </UserControl>

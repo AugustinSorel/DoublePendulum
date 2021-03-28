@@ -10,7 +10,7 @@
         WindowStyle="None"
         KeyDown="Window_KeyDown"
         Topmost="False"
-        WindowState="Maximized"
+        WindowState="Normal"
         Title="MainWindow" Height="800" Width="800">
 
     <Grid>

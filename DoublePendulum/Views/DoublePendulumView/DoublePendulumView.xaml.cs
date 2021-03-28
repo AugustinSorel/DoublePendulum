@@ -38,10 +38,7 @@ namespace DoublePendulum
 
         private void ButtonFullScreen_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if ((Application.Current.Windows[0] as MainWindow).WindowState == WindowState.Maximized)
-                (Application.Current.Windows[0] as MainWindow).WindowState = WindowState.Normal;
-            else
-                (Application.Current.Windows[0] as MainWindow).WindowState = WindowState.Maximized;
+            doublePendulumViewModel.FullScreen();
         }
     }
 }

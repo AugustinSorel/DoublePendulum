@@ -19,7 +19,7 @@ namespace DoublePendulum
 
         // Using a DependencyProperty as the backing store for vector.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CenterPointProperty =
-            DependencyProperty.Register("CenterPoint", typeof(Point), typeof(DoublePendulumView), new PropertyMetadata(new Point(SystemParameters.WorkArea.Width / 2, SystemParameters.WorkArea.Height / 4)));
+            DependencyProperty.Register("CenterPoint", typeof(Point), typeof(DoublePendulumView), new PropertyMetadata(new Point(400, 100)));
 
         public Point EndFirstArmPoint
         {
@@ -167,30 +167,6 @@ namespace DoublePendulum
             CreateTimer();
         }
 
-        internal void Stop()
-        {
-            if (aTimer.Enabled)
-            {
-                aTimer.Stop();
-                CenterPoint = new Point(SystemParameters.WorkArea.Width / 2, SystemParameters.WorkArea.Height / 4);
-                EndFirstArmPoint = new Point(0, 0);
-                FirstCirclePoint = new Point(0, 0);
-                SecondCirclePoint = new Point(0, 0);
-                SecondArmPoint = new Point(0, 0);
-                SecondArmEndPoint = new Point(0, 0);
-                FirstCircleRadius = new Point(10, 10);
-                SecondCircleRadius = new Point(10, 10);
-                LengthArm1 = 200;
-                LengthArm2 = 200;
-                WeightCircle1 = 10;
-                WeightCircle2 = 10;
-
-                RemoveTraceLine();
-
-                doublePendulumModel.ResetValue();
-            }
-        }
-
         private static void RemoveTraceLine()
         {
             List<Line> listOfLineToRemove = new List<Line>();
@@ -216,6 +192,48 @@ namespace DoublePendulum
         internal void CleanData()
         {
             RemoveTraceLine();
+        }
+
+        internal void FullScreen()
+        {
+            if ((Application.Current.Windows[0] as MainWindow).WindowState == WindowState.Maximized)
+            {
+                (Application.Current.Windows[0] as MainWindow).WindowState = WindowState.Normal;
+                CenterPoint = new Point(400, 100);
+            }
+            else
+            {
+                (Application.Current.Windows[0] as MainWindow).WindowState = WindowState.Maximized;
+                CenterPoint = new Point(SystemParameters.WorkArea.Width / 2, SystemParameters.WorkArea.Height / 4);
+            }
+
+            RemoveTraceLine();
+        }
+
+        internal void Stop()
+        {
+            if (aTimer.Enabled)
+            {
+                aTimer.Stop();
+                CenterPoint = (Application.Current.Windows[0] as MainWindow).WindowState == WindowState.Maximized
+                    ? new Point(SystemParameters.WorkArea.Width / 2, SystemParameters.WorkArea.Height / 4)
+                    : new Point(400, 100);
+                EndFirstArmPoint = new Point(0, 0);
+                FirstCirclePoint = new Point(0, 0);
+                SecondCirclePoint = new Point(0, 0);
+                SecondArmPoint = new Point(0, 0);
+                SecondArmEndPoint = new Point(0, 0);
+                FirstCircleRadius = new Point(10, 10);
+                SecondCircleRadius = new Point(10, 10);
+                LengthArm1 = 200;
+                LengthArm2 = 200;
+                WeightCircle1 = 10;
+                WeightCircle2 = 10;
+
+                RemoveTraceLine();
+
+                doublePendulumModel.ResetValue();
+            }
         }
         #endregion
 

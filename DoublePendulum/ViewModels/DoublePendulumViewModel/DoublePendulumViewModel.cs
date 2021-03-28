@@ -146,14 +146,15 @@ namespace DoublePendulum
             }
         }
 
-        public double AccelerationCircle1
+        public DoublePendulumModel DoublePendulumModel
         {
-            get { return Math.Round(doublePendulumModel.A1, 5); }
-            set { }
+            get { return doublePendulumModel; }
+            set { doublePendulumModel = value; NotifyPropertyChanged("DoublePendulumModel"); }
         }
+
         #endregion
 
-        private readonly DoublePendulumModel doublePendulumModel;
+        public DoublePendulumModel doublePendulumModel;
         private readonly BackgroundWorker backgroundWorker;
         private readonly Random random = new Random();
         private Timer aTimer;

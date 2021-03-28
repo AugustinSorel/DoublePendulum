@@ -1,9 +1,10 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
 
 namespace DoublePendulum
 {
-    class DoublePendulumModel
+    class DoublePendulumModel : INotifyPropertyChanged
     {
         private double m1;
         private double m2;
@@ -50,6 +51,7 @@ namespace DoublePendulum
         public double A1
         {
             get { return a1; }
+            set { a1 = value; NotifyPropertyChanged("A1"); }
         }
 
         internal void ResetValue()
@@ -58,7 +60,7 @@ namespace DoublePendulum
             m2 = 10;
             r1 = 200;
             r2 = 200;
-            a1 = Math.PI / 2;
+            A1 = Math.PI / 2;
             a2 = Math.PI;
             a1_v = 0;
             a2_v = 0;
@@ -66,6 +68,14 @@ namespace DoublePendulum
             previousY2 = -1;
             g = 1;
         }
+
+        #region Property Changed Event Handler
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
 
         internal bool PreviousXNotNull()
         {
@@ -96,7 +106,7 @@ namespace DoublePendulum
             
             a1_v += a1_a;
             a2_v += a2_a;
-            a1 += a1_v;
+            A1 += a1_v;
             a2 += a2_v;
         }
 

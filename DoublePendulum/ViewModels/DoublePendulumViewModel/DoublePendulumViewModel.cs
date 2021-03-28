@@ -148,7 +148,8 @@ namespace DoublePendulum
 
         public double AccelerationCircle1
         {
-            get { return doublePendulumModel.A1; }
+            get { return Math.Round(doublePendulumModel.A1, 5); }
+            set { }
         }
         #endregion
 

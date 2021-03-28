@@ -145,8 +145,12 @@
         </StackPanel>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBlock Foreground="{Binding Source={x:Static local:GlobalColors.ForegroundColor}}" 
-                       Text="{Binding Path=AccelerationCircle1, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <TextBlock Margin="10, 0, 10, 0" Foreground="{Binding Source={x:Static local:GlobalColors.ForegroundColor}}" FontSize="15">
+                <Run Text="Circl1 Acceleration: "/>
+                <Run Text="{Binding Path=AccelerationCircle1}"/>
+            </TextBlock>
+
         </StackPanel>
     </Grid>
 </UserControl>

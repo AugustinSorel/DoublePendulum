@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Timers;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
@@ -156,11 +157,29 @@ namespace DoublePendulum
             {
                 (Application.Current.Windows[0] as MainWindow).WindowState = WindowState.Normal;
                 CenterPoint = new Point(400, 100);
+                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelCircle1Data.Visibility = Visibility.Collapsed;
+                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelCircle2Data.Visibility = Visibility.Collapsed;
+                
+                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelSlider1.Visibility = Visibility.Collapsed;
+                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelSlider2.Visibility = Visibility.Collapsed;
+
+                Grid.SetColumn((Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelButtons1, 1);
+                Grid.SetColumn((Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelButtons2, 1);
+                                
             }
             else
             {
                 (Application.Current.Windows[0] as MainWindow).WindowState = WindowState.Maximized;
                 CenterPoint = new Point(SystemParameters.WorkArea.Width / 2, SystemParameters.WorkArea.Height / 4);
+
+                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelCircle1Data.Visibility = Visibility.Visible;
+                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelCircle2Data.Visibility = Visibility.Visible;
+
+                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelSlider1.Visibility = Visibility.Visible;
+                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelSlider2.Visibility = Visibility.Visible;
+
+                Grid.SetColumn((Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelButtons1, 2);
+                Grid.SetColumn((Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelButtons2, 2);
             }
 
             RemoveTraceLine();

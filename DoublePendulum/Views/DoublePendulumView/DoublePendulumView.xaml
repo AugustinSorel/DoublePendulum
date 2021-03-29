@@ -94,20 +94,20 @@
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 10, 0, 10">
             <TextBlock Margin="10, 0, 10, 0" Foreground="{Binding Source={x:Static local:GlobalColors.ForegroundColor}}" FontSize="20">
                 <Run Text="Length arm1: "/>
-                <Run Text="{Binding Path=LengthArm1, UpdateSourceTrigger=PropertyChanged}"/>
+                <Run Text="{Binding Path=DoublePendulumModel.R1, UpdateSourceTrigger=PropertyChanged}"/>
             </TextBlock>
 
             <Slider Margin="10, 0, 10, 0" Name="sliderLengthArm1" Style="{StaticResource CustomSlider}" 
-                    Value="{Binding Path=LengthArm1, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                    Value="{Binding Path=DoublePendulumModel.R1, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                     Minimum="10" Maximum="400" IsSnapToTickEnabled="True" TickFrequency="1"/>
 
             <TextBlock Margin="10, 0, 10, 0" Foreground="{Binding Source={x:Static local:GlobalColors.ForegroundColor}}" FontSize="20">
                 <Run Text="Length arm2: "/>
-                <Run Text="{Binding Path=LengthArm2, UpdateSourceTrigger=PropertyChanged}"/>
+                <Run Text="{Binding Path=DoublePendulumModel.R2, UpdateSourceTrigger=PropertyChanged}"/>
             </TextBlock>
 
             <Slider Margin="10, 0, 10, 0" Name="sliderLengthArm2" Style="{StaticResource CustomSlider}"  
-                    Value="{Binding Path=LengthArm2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                    Value="{Binding Path=DoublePendulumModel.R2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                     Minimum="10" Maximum="400" IsSnapToTickEnabled="True" TickFrequency="1"/>
 
         </StackPanel>

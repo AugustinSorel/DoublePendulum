@@ -120,32 +120,6 @@ namespace DoublePendulum
             }
         }
 
-        public double LengthArm1
-        {
-            get { return doublePendulumModel.R1; }
-            set
-            {
-                if (value != doublePendulumModel.R1 && value > 9 && value < 401)
-                {
-                    doublePendulumModel.R1 = value;
-                    NotifyPropertyChanged("LengthArm1");
-                }
-            }
-        }
-
-        public double LengthArm2
-        {
-            get { return doublePendulumModel.R2; }
-            set
-            {
-                if (value != doublePendulumModel.R2 && value > 9 && value < 401)
-                {
-                    doublePendulumModel.R2 = value;
-                    NotifyPropertyChanged("LengthArm2");
-                }
-            }
-        }
-
         public DoublePendulumModel DoublePendulumModel
         {
             get { return doublePendulumModel; }
@@ -232,8 +206,7 @@ namespace DoublePendulum
                 SecondArmEndPoint = new Point(0, 0);
                 FirstCircleRadius = new Point(10, 10);
                 SecondCircleRadius = new Point(10, 10);
-                LengthArm1 = 200;
-                LengthArm2 = 200;
+                
                 WeightCircle1 = 10;
                 WeightCircle2 = 10;
 

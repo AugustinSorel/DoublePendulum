@@ -39,19 +39,31 @@ namespace DoublePendulum
         public double R1
         {
             get { return r1; }
-            set { r1 = value; }
+            set 
+            { 
+                r1 = value;
+                NotifyPropertyChanged("R1");
+            }
         }
 
         public double R2
         {
             get { return r2; }
-            set { r2 = value; }
+            set 
+            { 
+                r2 = value;
+                NotifyPropertyChanged("R2");
+            }
         }
 
         public double A1
         {
             get { return a1; }
-            set { a1 = value; NotifyPropertyChanged("A1"); }
+            set 
+            {
+                a1 = value; 
+                NotifyPropertyChanged("A1"); 
+            }
         }
 
         internal void ResetValue()

@@ -66,11 +66,41 @@ namespace DoublePendulum
 
         public double A1
         {
-            get { return a1; }
+            get { return Math.Round(a1, 4); }
             set 
             {
                 a1 = value; 
                 NotifyPropertyChanged("A1"); 
+            }
+        }
+
+        public double A2
+        {
+            get { return a2; }
+            set 
+            { 
+                a2 = value;
+                NotifyPropertyChanged("A2");
+            }
+        }
+
+        public double A1_v
+        {
+            get { return a1_v; }
+            set 
+            { 
+                a1_v = value; 
+                NotifyPropertyChanged("A1_v"); 
+            }
+        }
+
+        public double A2_v
+        {
+            get { return a2_v; }
+            set 
+            { 
+                a2_v = value; 
+                NotifyPropertyChanged("A2_v"); 
             }
         }
 

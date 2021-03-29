@@ -102,10 +102,11 @@ namespace DoublePendulum
 
         #endregion
 
+        #region Fields
         public DoublePendulumModel doublePendulumModel;
         private readonly BackgroundWorker backgroundWorker;
-        private readonly Random random = new Random();
         private Timer aTimer;
+        #endregion
 
         public DoublePendulumViewModel()
         {
@@ -136,12 +137,12 @@ namespace DoublePendulum
         #region Click Event
         internal void Start()
         {
-            (aTimer.Enabled) = true;
+            aTimer.Enabled = true;
         }
 
         internal void Pause()
         {
-            (aTimer.Enabled) ^= true;
+            aTimer.Enabled ^= true;
         }
 
         internal void CleanData()
@@ -180,7 +181,7 @@ namespace DoublePendulum
                 SecondArmEndPoint = new Point(0, 0);
                 FirstCircleRadius = new Point(10, 10);
                 SecondCircleRadius = new Point(10, 10);
-  
+   
                 RemoveTraceLine();
 
                 doublePendulumModel.ResetValue();
@@ -235,7 +236,7 @@ namespace DoublePendulum
         #region DrawOlPosition
         private void DrawOldPosition(Point secondCirclePoint)
         {
-            
+            Random random = new Random();
             if (doublePendulumModel.PreviousXNotNull() && (Application.Current.Windows[0] as MainWindow).doublePendulumView2.checkBoxTrace.IsChecked == true)
             {
 

@@ -76,7 +76,7 @@ namespace DoublePendulum
 
         public double A2
         {
-            get { return a2; }
+            get { return Math.Round(a2, 4); }
             set 
             { 
                 a2 = value;
@@ -111,9 +111,9 @@ namespace DoublePendulum
             R1 = 200;
             R2 = 200;
             A1 = Math.PI / 2;
-            a2 = Math.PI;
-            a1_v = 0;
-            a2_v = 0;
+            A2 = Math.PI;
+            A1_v = 0;
+            A2_v = 0;
             previousX2 = -1;
             previousY2 = -1;
             g = 1;
@@ -155,10 +155,10 @@ namespace DoublePendulum
             den = r2 * (2 * m1 + m2 - m2 * Math.Cos(2 * a1 - 2 * a2));
             double a2_a = num1 * (num2 + num3 + num4) / den;
             
-            a1_v += a1_a;
-            a2_v += a2_a;
+            A1_v += a1_a;
+            A2_v += a2_a;
             A1 += a1_v;
-            a2 += a2_v;
+            A2 += a2_v;
         }
 
         internal Point GetFirstPoint()

@@ -171,20 +171,24 @@ namespace DoublePendulum
             if (aTimer.Enabled)
             {
                 aTimer.Stop();
-                CenterPoint = (Application.Current.Windows[0] as MainWindow).WindowState == WindowState.Maximized
+                Application.Current.Dispatcher.Invoke(new Action(() => {
+
+                    CenterPoint = (Application.Current.Windows[0] as MainWindow).WindowState == WindowState.Maximized
                     ? new Point(SystemParameters.WorkArea.Width / 2, SystemParameters.WorkArea.Height / 4)
                     : new Point(400, 100);
-                EndFirstArmPoint = new Point(0, 0);
-                FirstCirclePoint = new Point(0, 0);
-                SecondCirclePoint = new Point(0, 0);
-                SecondArmPoint = new Point(0, 0);
-                SecondArmEndPoint = new Point(0, 0);
-                FirstCircleRadius = new Point(10, 10);
-                SecondCircleRadius = new Point(10, 10);
-   
-                RemoveTraceLine();
+                    EndFirstArmPoint = new Point(0, 0);
+                    FirstCirclePoint = new Point(0, 0);
+                    SecondCirclePoint = new Point(0, 0);
+                    SecondArmPoint = new Point(0, 0);
+                    SecondArmEndPoint = new Point(0, 0);
+                    FirstCircleRadius = new Point(10, 10);
+                    SecondCircleRadius = new Point(10, 10);
 
-                doublePendulumModel.ResetValue();
+                    RemoveTraceLine();
+
+                    doublePendulumModel.ResetValue();
+
+                }));
             }
         }
         #endregion

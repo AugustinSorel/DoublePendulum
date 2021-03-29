@@ -73,20 +73,20 @@
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 10, 0, 10">
             <TextBlock Margin="10, 0, 10, 0" Foreground="{Binding Source={x:Static local:GlobalColors.ForegroundColor}}" FontSize="20">
                 <Run Text="Weight Circle1: "/>
-                <Run Text="{Binding Path=WeightCircle1, UpdateSourceTrigger=PropertyChanged}"/>
+                <Run Text="{Binding Path=DoublePendulumModel.M1, UpdateSourceTrigger=PropertyChanged}"/>
             </TextBlock>
 
             <Slider Margin="10, 0, 10, 0" Name="sliderWeightCircle1" Style="{StaticResource CustomSlider}" 
-                    Value="{Binding Path=WeightCircle1, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                    Value="{Binding Path=DoublePendulumModel.M1, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                     Minimum="1" Maximum="50" IsSnapToTickEnabled="True" TickFrequency="1"/>
 
             <TextBlock Margin="10, 0, 10, 0" Foreground="{Binding Source={x:Static local:GlobalColors.ForegroundColor}}" FontSize="20">
                 <Run Text="Weihgt Circle2: "/>
-                <Run Text="{Binding Path=WeightCircle2, UpdateSourceTrigger=PropertyChanged}"/>
+                <Run Text="{Binding Path=DoublePendulumModel.M2, UpdateSourceTrigger=PropertyChanged}"/>
             </TextBlock>
 
             <Slider Margin="5, 0, 5, 0" Name="sliderWeightCircle2" Style="{StaticResource CustomSlider}" 
-                    Value="{Binding Path=WeightCircle2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                    Value="{Binding Path=DoublePendulumModel.M2, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                     Minimum="1" Maximum="50" IsSnapToTickEnabled="True" TickFrequency="1"/>
 
         </StackPanel>

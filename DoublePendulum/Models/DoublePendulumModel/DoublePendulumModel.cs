@@ -27,13 +27,21 @@ namespace DoublePendulum
         public double M1
         {
             get { return m1; }
-            set { m1 = value; }
+            set 
+            {
+                m1 = value;
+                NotifyPropertyChanged("M1");
+            }
         }
 
         public double M2
         {
             get { return m2; }
-            set { m2 = value; }
+            set 
+            { 
+                m2 = value;
+                NotifyPropertyChanged("M2");
+            }
         }
 
         public double R1
@@ -68,10 +76,10 @@ namespace DoublePendulum
 
         internal void ResetValue()
         {
-            m1 = 10;
-            m2 = 10;
-            r1 = 200;
-            r2 = 200;
+            M1 = 10;
+            M2 = 10;
+            R1 = 200;
+            R2 = 200;
             A1 = Math.PI / 2;
             a2 = Math.PI;
             a1_v = 0;

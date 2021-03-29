@@ -94,32 +94,6 @@ namespace DoublePendulum
         #endregion
 
         #region Property
-        public double WeightCircle2
-        {
-            get { return doublePendulumModel.M2; }
-            set 
-            {
-                if (value != doublePendulumModel.M2 && value > 0 && value < 51)
-                {
-                    doublePendulumModel.M2 = value;
-                    NotifyPropertyChanged("WeightCircle2");
-                }
-            }
-        }
-
-        public double WeightCircle1
-        {
-            get { return doublePendulumModel.M1; }
-            set
-            {
-                if (value != doublePendulumModel.M1 && value > 0 && value < 51)
-                {
-                    doublePendulumModel.M1 = value;
-                    NotifyPropertyChanged("WeightCircle1");
-                }
-            }
-        }
-
         public DoublePendulumModel DoublePendulumModel
         {
             get { return doublePendulumModel; }
@@ -206,10 +180,7 @@ namespace DoublePendulum
                 SecondArmEndPoint = new Point(0, 0);
                 FirstCircleRadius = new Point(10, 10);
                 SecondCircleRadius = new Point(10, 10);
-                
-                WeightCircle1 = 10;
-                WeightCircle2 = 10;
-
+  
                 RemoveTraceLine();
 
                 doublePendulumModel.ResetValue();

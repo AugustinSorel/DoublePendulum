@@ -86,7 +86,7 @@ namespace DoublePendulum
 
         public double A1_v
         {
-            get { return a1_v; }
+            get { return Math.Round(a1_v, 4); }
             set 
             { 
                 a1_v = value; 
@@ -96,7 +96,7 @@ namespace DoublePendulum
 
         public double A2_v
         {
-            get { return a2_v; }
+            get { return Math.Round(a2_v, 4); }
             set 
             { 
                 a2_v = value; 

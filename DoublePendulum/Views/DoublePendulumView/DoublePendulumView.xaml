@@ -152,8 +152,6 @@
         <StackPanel x:Name="stackPanelButtons2" Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <CheckBox Name="checkBoxTrace" VerticalAlignment="Center" Content="Trace" IsChecked="True"/>
             
-            <CheckBox Name="checkBoxFriction" VerticalAlignment="Center" Content="Friction" IsChecked="False"/>
-
             <Button Name="buttonClean" Style="{DynamicResource DefaultButtonStyle}" Click="buttonClean_Click" 
                     ToolTip="Clean the trace line">
                 <Image SnapsToDevicePixels="True" Source="/Images/CleanData_inverse_16x.png"/>

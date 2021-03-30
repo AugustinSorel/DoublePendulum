@@ -15,6 +15,7 @@ namespace DoublePendulum
         private double a1_v;
         private double a2_v;
         private double g;
+        private double friction;
 
         public double previousX2;
         public double previousY2;
@@ -114,6 +115,13 @@ namespace DoublePendulum
             }
         }
 
+        public double Friction
+        {
+            get { return friction; }
+            set { friction = value; }
+        }
+
+
         internal void ResetValue()
         {
             M1 = 10;
@@ -127,10 +135,10 @@ namespace DoublePendulum
             previousX2 = -1;
             previousY2 = -1;
             G = 1;
+            Friction = 1;
         }
 
         #region Property Changed Event Handler 
-        // remove this.
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propertyName)
         {
@@ -171,8 +179,8 @@ namespace DoublePendulum
             A2 += a2_v;
 
             // friction
-            // A1_v *= 0;
-            // A2_v *= 0;
+             A1_v *= friction;
+             A2_v *= friction;
         }
 
         internal Point GetFirstPoint()

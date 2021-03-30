@@ -104,6 +104,16 @@ namespace DoublePendulum
             }
         }
 
+        public double G
+        {
+            get { return g; }
+            set
+            {
+                g = value;
+                NotifyPropertyChanged("G");
+            }
+        }
+
         internal void ResetValue()
         {
             M1 = 10;
@@ -116,7 +126,7 @@ namespace DoublePendulum
             A2_v = 0;
             previousX2 = -1;
             previousY2 = -1;
-            g = 1;
+            G = 1;
         }
 
         #region Property Changed Event Handler 

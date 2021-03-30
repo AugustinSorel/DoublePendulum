@@ -91,11 +91,11 @@
 
             <TextBlock Margin="10, 0, 10, 0" Foreground="{Binding Source={x:Static local:GlobalColors.ForegroundColor}}" FontSize="20">
                 <Run Text="Friction: "/>
-                <Run Text="1"/>
+                <Run Text="{Binding Path=DoublePendulumModel.Friction, UpdateSourceTrigger=PropertyChanged}"/>
             </TextBlock>
             
             <Slider Margin="5, 0, 5, 0" Name="sliderFriction" Style="{StaticResource CustomSlider}" 
-                    Value="0.5" 
+                    Value="{Binding Path=DoublePendulumModel.Friction, UpdateSourceTrigger=PropertyChanged}" 
                     Minimum="0" Maximum="1" IsSnapToTickEnabled="True" TickFrequency="0.1"/>
 
         </StackPanel>

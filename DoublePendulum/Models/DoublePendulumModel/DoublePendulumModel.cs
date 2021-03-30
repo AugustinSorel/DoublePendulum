@@ -118,7 +118,11 @@ namespace DoublePendulum
         public double Friction
         {
             get { return friction; }
-            set { friction = value; }
+            set 
+            { 
+                friction = value;
+                NotifyPropertyChanged("Friction");
+            }
         }
 
 

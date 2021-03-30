@@ -247,10 +247,6 @@ namespace DoublePendulum
                 SecondCirclePoint = new Point(secondCirclePoint.X + CenterPoint.X, secondCirclePoint.Y + CenterPoint.Y);
                 SecondCircleRadius = new Point(doublePendulumModel.M2, doublePendulumModel.M2);
 
-                // friction
-                //a1_v *= 0.99;
-                //a2_v *= 0.99;
-
                 DrawOldPosition(secondCirclePoint);
             }));
         }

@@ -159,6 +159,10 @@ namespace DoublePendulum
             A2_v += a2_a;
             A1 += a1_v;
             A2 += a2_v;
+
+            // friction
+            // A1_v *= 0;
+            // A2_v *= 0;
         }
 
         internal Point GetFirstPoint()

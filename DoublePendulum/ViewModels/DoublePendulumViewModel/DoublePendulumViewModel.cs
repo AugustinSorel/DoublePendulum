@@ -153,35 +153,7 @@ namespace DoublePendulum
 
         internal void FullScreen()
         {
-            if ((Application.Current.Windows[0] as MainWindow).WindowState == WindowState.Maximized)
-            {
-                (Application.Current.Windows[0] as MainWindow).WindowState = WindowState.Normal;
-                CenterPoint = new Point(400, 100);
-                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelCircle1Data.Visibility = Visibility.Collapsed;
-                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelCircle2Data.Visibility = Visibility.Collapsed;
-                
-                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelSlider1.Visibility = Visibility.Collapsed;
-                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelSlider2.Visibility = Visibility.Collapsed;
-
-                Grid.SetColumn((Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelButtons1, 1);
-                Grid.SetColumn((Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelButtons2, 1);
-                                
-            }
-            else
-            {
-                (Application.Current.Windows[0] as MainWindow).WindowState = WindowState.Maximized;
-                CenterPoint = new Point(SystemParameters.WorkArea.Width / 2, SystemParameters.WorkArea.Height / 4);
-
-                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelCircle1Data.Visibility = Visibility.Visible;
-                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelCircle2Data.Visibility = Visibility.Visible;
-
-                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelSlider1.Visibility = Visibility.Visible;
-                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelSlider2.Visibility = Visibility.Visible;
-
-                Grid.SetColumn((Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelButtons1, 2);
-                Grid.SetColumn((Application.Current.Windows[0] as MainWindow).doublePendulumView2.stackPanelButtons2, 2);
-            }
-
+            new HandleFullScreen(this);
             RemoveTraceLine();
         }
 
@@ -225,7 +197,6 @@ namespace DoublePendulum
         #region HandleTick
         private void HandleTick(object sender, EventArgs e)
         {
-
             Point firstCirclePoint = doublePendulumModel.GetFirstPoint();
             Point secondCirclePoint = doublePendulumModel.GetSecondPoint();
             secondCirclePoint.X += firstCirclePoint.X;
@@ -255,17 +226,10 @@ namespace DoublePendulum
         #region DrawOlPosition
         private void DrawOldPosition(Point secondCirclePoint)
         {
-            Random random = new Random();
             if (doublePendulumModel.PreviousXNotNull() && (Application.Current.Windows[0] as MainWindow).doublePendulumView2.checkBoxTrace.IsChecked == true)
             {
-
-                int red = random.Next(0, 255);
-                int blue = random.Next(0, 255);
-                int green = random.Next(0, 255);
-
                 Line ellipse = new Line()
                 {
-                    //Stroke = new SolidColorBrush(Color.FromRgb((byte)red, (byte)green, (byte)blue)),
                     Stroke = Brushes.White,
                     X1 = doublePendulumModel.previousX2 + CenterPoint.X,
                     Y1 = doublePendulumModel.previousY2 + CenterPoint.Y,
@@ -273,15 +237,6 @@ namespace DoublePendulum
                     Y2 = secondCirclePoint.Y + CenterPoint.Y,
                 StrokeThickness = 1,
                 };
-
-                //Ellipse ellipse = new Ellipse()
-                //{
-                //    Fill = Brushes.White,
-                //    Height = 6,
-                //    Width = 6,
-                //};
-                //Canvas.SetLeft(ellipse, doublePendulumModel.previousX2 + CenterPoint.X + ellipse.Width / 2);
-                //Canvas.SetTop(ellipse, doublePendulumModel.previousY2 + CenterPoint.Y + ellipse.Height / 2);
 
                 (Application.Current.Windows[0] as MainWindow).doublePendulumView2.canvas.Children.Add(ellipse);
             }

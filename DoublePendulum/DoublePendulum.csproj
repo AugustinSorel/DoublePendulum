@@ -86,6 +86,7 @@
     <Compile Include="Models\DoublePendulumModel\DoublePendulumModel.cs" />
     <Compile Include="ViewModels\DoublePendulumViewModel\DoublePendulumViewModel.cs" />
     <Compile Include="Global\GlobalColors\GlobalColors.cs" />
+    <Compile Include="ViewModels\DoublePendulumViewModel\HandleFullScreen.cs" />
     <Compile Include="Views\TopBarView\TopBarView.xaml.cs">
       <DependentUpon>TopBarView.xaml</DependentUpon>
     </Compile>

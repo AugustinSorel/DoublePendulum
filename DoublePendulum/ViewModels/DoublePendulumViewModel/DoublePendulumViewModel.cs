@@ -99,24 +99,72 @@ namespace DoublePendulum
         {
             get { return doublePendulumModel; }
             set { doublePendulumModel = value; NotifyPropertyChanged("DoublePendulumModel"); }
-        } // cleaning to do 
+        }
 
         #endregion
 
         #region Fields
         public DoublePendulumModel doublePendulumModel;
-        private readonly BackgroundWorker backgroundWorker;
-        private Timer aTimer;
+        private DoublePendulumEngine doublePendulumEngine;
         #endregion
 
         public DoublePendulumViewModel()
         {
-            backgroundWorker = new BackgroundWorker();
             doublePendulumModel = new DoublePendulumModel();
+            doublePendulumEngine = new DoublePendulumEngine(this);
+        }
+
+        #region Click Event
+        internal void Start()
+        {
+            doublePendulumEngine.Start();
+        }
+
+        internal void Pause()
+        {
+            doublePendulumEngine.Pause();
+        }
+
+        internal void FullScreen()
+        {
+            new HandleFullScreen(this);
+            doublePendulumEngine.RemoveTraceLine();
+        }
+
+        internal void Stop()
+        {
+            doublePendulumEngine.Stop();
+        }
+
+        internal void CleanData()
+        {
+            doublePendulumEngine.RemoveTraceLine();
+        }
+        #endregion
+
+        #region Property Changed Event Handler
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        #endregion
+    }
+
+    class DoublePendulumEngine
+    {
+        private readonly BackgroundWorker backgroundWorker;
+        private readonly DoublePendulumViewModel doublePendulumViewModel;
+        private Timer aTimer;
+
+        public DoublePendulumEngine(DoublePendulumViewModel doublePendulumViewModel)
+        {
+            backgroundWorker = new BackgroundWorker();
 
             backgroundWorker.DoWork += new DoWorkEventHandler(BackgroundWorker_DoWork);
             backgroundWorker.WorkerSupportsCancellation = true;
             backgroundWorker.RunWorkerAsync();
+            this.doublePendulumViewModel = doublePendulumViewModel;
         }
 
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -124,63 +172,52 @@ namespace DoublePendulum
             CreateTimer();
         }
 
-        private static void RemoveTraceLine()
+        #region HandleTick
+        private void HandleTick(object sender, EventArgs e)
         {
-            List<Line> listOfLineToRemove = new List<Line>();
-            foreach (var item in (Application.Current.Windows[0] as MainWindow).doublePendulumView2.canvas.Children)
-                if (item.GetType() == typeof(Line) && (item as Line).Name == string.Empty)
-                    listOfLineToRemove.Add(item as Line);
+            Point firstCirclePoint = doublePendulumViewModel.doublePendulumModel.GetFirstPoint();
+            Point secondCirclePoint = doublePendulumViewModel.doublePendulumModel.GetSecondPoint();
+            secondCirclePoint.X += firstCirclePoint.X;
+            secondCirclePoint.Y += firstCirclePoint.Y;
 
-            foreach (var item in listOfLineToRemove)
-                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.canvas.Children.Remove(item);
+            doublePendulumViewModel.doublePendulumModel.Calculate2();
+
+            Application.Current.Dispatcher.Invoke(new Action(() => {
+
+                doublePendulumViewModel.EndFirstArmPoint = new Point(firstCirclePoint.X + doublePendulumViewModel.CenterPoint.X, firstCirclePoint.Y + doublePendulumViewModel.CenterPoint.Y);
+                
+                doublePendulumViewModel.FirstCirclePoint = new Point(firstCirclePoint.X + doublePendulumViewModel.CenterPoint.X, firstCirclePoint.Y + doublePendulumViewModel.CenterPoint.Y);
+                doublePendulumViewModel.FirstCircleRadius = new Point(doublePendulumViewModel.doublePendulumModel.M1, doublePendulumViewModel.doublePendulumModel.M1);
+                
+                doublePendulumViewModel.SecondArmPoint = new Point(firstCirclePoint.X + doublePendulumViewModel.CenterPoint.X, firstCirclePoint.Y + doublePendulumViewModel.CenterPoint.Y);
+                doublePendulumViewModel.SecondArmEndPoint = new Point(secondCirclePoint.X + doublePendulumViewModel.CenterPoint.X, secondCirclePoint.Y + doublePendulumViewModel.CenterPoint.Y);
+                
+                doublePendulumViewModel.SecondCirclePoint = new Point(secondCirclePoint.X + doublePendulumViewModel.CenterPoint.X, secondCirclePoint.Y + doublePendulumViewModel.CenterPoint.Y);
+                doublePendulumViewModel.SecondCircleRadius = new Point(doublePendulumViewModel.doublePendulumModel.M2, doublePendulumViewModel.doublePendulumModel.M2);
+
+                DrawOldPosition(secondCirclePoint);
+            }));
         }
+        #endregion
 
-        #region Click Event
-        internal void Start()
+        #region DrawOlPosition
+        private void DrawOldPosition(Point secondCirclePoint)
         {
-            aTimer.Enabled = true;
-        }
-
-        internal void Pause()
-        {
-            aTimer.Enabled ^= true;
-        }
-
-        internal void CleanData()
-        {
-            RemoveTraceLine();
-        }
-
-        internal void FullScreen()
-        {
-            new HandleFullScreen(this);
-            RemoveTraceLine();
-        }
-
-        internal void Stop()
-        {
-            if (aTimer.Enabled)
+            if (doublePendulumViewModel.doublePendulumModel.PreviousXNotNull() && (Application.Current.Windows[0] as MainWindow).doublePendulumView2.checkBoxTrace.IsChecked == true)
             {
-                aTimer.Stop();
-                Application.Current.Dispatcher.Invoke(new Action(() => {
+                Line ellipse = new Line()
+                {
+                    Stroke = Brushes.White,
+                    X1 = doublePendulumViewModel.doublePendulumModel.previousX2 + doublePendulumViewModel.CenterPoint.X,
+                    Y1 = doublePendulumViewModel.doublePendulumModel.previousY2 + doublePendulumViewModel.CenterPoint.Y,
+                    X2 = secondCirclePoint.X + doublePendulumViewModel.CenterPoint.X,
+                    Y2 = secondCirclePoint.Y + doublePendulumViewModel.CenterPoint.Y,
+                    StrokeThickness = 1,
+                };
 
-                    CenterPoint = (Application.Current.Windows[0] as MainWindow).WindowState == WindowState.Maximized
-                    ? new Point(SystemParameters.WorkArea.Width / 2, SystemParameters.WorkArea.Height / 4)
-                    : new Point(400, 100);
-                    EndFirstArmPoint = new Point(0, 0);
-                    FirstCirclePoint = new Point(0, 0);
-                    SecondCirclePoint = new Point(0, 0);
-                    SecondArmPoint = new Point(0, 0);
-                    SecondArmEndPoint = new Point(0, 0);
-                    FirstCircleRadius = new Point(10, 10);
-                    SecondCircleRadius = new Point(10, 10);
-
-                    RemoveTraceLine();
-
-                    doublePendulumModel.ResetValue();
-
-                }));
+                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.canvas.Children.Add(ellipse);
             }
+            doublePendulumViewModel.doublePendulumModel.StoreCurrentPoint(secondCirclePoint.X, secondCirclePoint.Y);
         }
         #endregion
 
@@ -192,63 +229,52 @@ namespace DoublePendulum
             aTimer.Interval = 5;
             aTimer.Enabled = true;
         }
-        #endregion
 
-        #region HandleTick
-        private void HandleTick(object sender, EventArgs e)
+        internal void Start()
         {
-            Point firstCirclePoint = doublePendulumModel.GetFirstPoint();
-            Point secondCirclePoint = doublePendulumModel.GetSecondPoint();
-            secondCirclePoint.X += firstCirclePoint.X;
-            secondCirclePoint.Y += firstCirclePoint.Y;
-
-            doublePendulumModel.Calculate2();
-
-            Application.Current.Dispatcher.Invoke(new Action(() => {
-
-                EndFirstArmPoint = new Point(firstCirclePoint.X + CenterPoint.X, firstCirclePoint.Y + CenterPoint.Y);
-
-
-                FirstCirclePoint = new Point(firstCirclePoint.X + CenterPoint.X, firstCirclePoint.Y + CenterPoint.Y);
-                FirstCircleRadius = new Point(doublePendulumModel.M1, doublePendulumModel.M1);
-
-                SecondArmPoint = new Point(firstCirclePoint.X + CenterPoint.X, firstCirclePoint.Y + CenterPoint.Y);
-                SecondArmEndPoint = new Point(secondCirclePoint.X + CenterPoint.X, secondCirclePoint.Y + CenterPoint.Y);
-
-                SecondCirclePoint = new Point(secondCirclePoint.X + CenterPoint.X, secondCirclePoint.Y + CenterPoint.Y);
-                SecondCircleRadius = new Point(doublePendulumModel.M2, doublePendulumModel.M2);
-
-                DrawOldPosition(secondCirclePoint);
-            }));
+            aTimer.Enabled = true;
         }
-        #endregion
 
-        #region DrawOlPosition
-        private void DrawOldPosition(Point secondCirclePoint)
+        internal void Pause()
         {
-            if (doublePendulumModel.PreviousXNotNull() && (Application.Current.Windows[0] as MainWindow).doublePendulumView2.checkBoxTrace.IsChecked == true)
+            aTimer.Enabled ^= true;
+        }
+
+        internal void RemoveTraceLine()
+        {
+            List<Line> listOfLineToRemove = new List<Line>();
+            foreach (var item in (Application.Current.Windows[0] as MainWindow).doublePendulumView2.canvas.Children)
+                if (item.GetType() == typeof(Line) && (item as Line).Name == string.Empty)
+                    listOfLineToRemove.Add(item as Line);
+
+            foreach (var item in listOfLineToRemove)
+                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.canvas.Children.Remove(item);
+        }
+
+        internal void Stop()
+        {
+            if (aTimer.Enabled)
             {
-                Line ellipse = new Line()
-                {
-                    Stroke = Brushes.White,
-                    X1 = doublePendulumModel.previousX2 + CenterPoint.X,
-                    Y1 = doublePendulumModel.previousY2 + CenterPoint.Y,
-                    X2 = secondCirclePoint.X + CenterPoint.X,
-                    Y2 = secondCirclePoint.Y + CenterPoint.Y,
-                StrokeThickness = 1,
-                };
+                aTimer.Stop();
+                Application.Current.Dispatcher.Invoke(new Action(() => {
 
-                (Application.Current.Windows[0] as MainWindow).doublePendulumView2.canvas.Children.Add(ellipse);
+                    doublePendulumViewModel.CenterPoint = (Application.Current.Windows[0] as MainWindow).WindowState == WindowState.Maximized
+                    ? new Point(SystemParameters.WorkArea.Width / 2, SystemParameters.WorkArea.Height / 4)
+                    : new Point(400, 100);
+                    doublePendulumViewModel.EndFirstArmPoint = new Point(0, 0);
+                    doublePendulumViewModel.FirstCirclePoint = new Point(0, 0);
+                    doublePendulumViewModel.SecondCirclePoint = new Point(0, 0);
+                    doublePendulumViewModel.SecondArmPoint = new Point(0, 0);
+                    doublePendulumViewModel.SecondArmEndPoint = new Point(0, 0);
+                    doublePendulumViewModel.FirstCircleRadius = new Point(10, 10);
+                    doublePendulumViewModel.SecondCircleRadius = new Point(10, 10);
+
+                    RemoveTraceLine();
+
+                    doublePendulumViewModel.doublePendulumModel.ResetValue();
+
+                }));
             }
-            doublePendulumModel.StoreCurrentPoint(secondCirclePoint.X, secondCirclePoint.Y);
-        }
-        #endregion
-
-        #region Property Changed Event Handler
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
     }

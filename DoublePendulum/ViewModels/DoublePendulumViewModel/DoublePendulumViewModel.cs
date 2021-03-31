@@ -100,7 +100,7 @@ namespace DoublePendulum
 
         #region Fields
         public DoublePendulumModel doublePendulumModel;
-        private DoublePendulumEngine doublePendulumEngine;
+        private readonly DoublePendulumEngine doublePendulumEngine;
         #endregion
 
         public DoublePendulumViewModel()

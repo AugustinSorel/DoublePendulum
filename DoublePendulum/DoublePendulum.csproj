@@ -84,6 +84,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\DoublePendulumModel\DoublePendulumModel.cs" />
+    <Compile Include="ViewModels\DoublePendulumViewModel\DoublePendulumEngine.cs" />
     <Compile Include="ViewModels\DoublePendulumViewModel\DoublePendulumViewModel.cs" />
     <Compile Include="Global\GlobalColors\GlobalColors.cs" />
     <Compile Include="ViewModels\DoublePendulumViewModel\HandleFullScreen.cs" />

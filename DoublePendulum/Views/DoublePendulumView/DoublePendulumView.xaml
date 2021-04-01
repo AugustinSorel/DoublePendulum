@@ -165,12 +165,12 @@
         <StackPanel Visibility="Hidden" Name="stackPanelCircle1Data" Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
 
             <TextBlock Margin="10, 0, 10, 0" Foreground="{Binding Source={x:Static local:GlobalColors.ForegroundColor}}" FontSize="15">
-                <Run Text="Circl1 Velocity: "/>
+                <Run Text="Circle1 Velocity: "/>
                 <Run Text="{Binding Path=DoublePendulumModel.A1_v, UpdateSourceTrigger=PropertyChanged}"/>
             </TextBlock>
 
             <TextBlock Margin="10, 0, 10, 0" Foreground="{Binding Source={x:Static local:GlobalColors.ForegroundColor}}" FontSize="15">
-                <Run Text="Circl1 Acceleration: "/>
+                <Run Text="Circle1 Acceleration: "/>
                 <Run Text="{Binding Path=DoublePendulumModel.A1, UpdateSourceTrigger=PropertyChanged}"/>
             </TextBlock>
 
@@ -179,12 +179,12 @@
         <StackPanel Visibility="Hidden" Name="stackPanelCircle2Data" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
 
             <TextBlock Margin="10, 0, 10, 0" Foreground="{Binding Source={x:Static local:GlobalColors.ForegroundColor}}" FontSize="15">
-                <Run Text="Circl2 Velocity: "/>
+                <Run Text="Circle2 Velocity: "/>
                 <Run Text="{Binding Path=DoublePendulumModel.A2_v, UpdateSourceTrigger=PropertyChanged}"/>
             </TextBlock>
 
             <TextBlock Margin="10, 0, 10, 0" Foreground="{Binding Source={x:Static local:GlobalColors.ForegroundColor}}" FontSize="15">
-                <Run Text="Circl2 Acceleration: "/>
+                <Run Text="Circle2 Acceleration: "/>
                 <Run Text="{Binding Path=DoublePendulumModel.A2, UpdateSourceTrigger=PropertyChanged}"/>
             </TextBlock>
 
